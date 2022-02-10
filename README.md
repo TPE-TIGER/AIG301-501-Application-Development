@@ -8,6 +8,7 @@
 5. (Example) Azure IoT Central Demo Application
 
 ## tpFunc Function
-1. Schedule 1
-2. Schedule 2
-3. Tag onChange
+1. What is tpFunc and tpFunc funciton
+2. (Example) Schedule 1
+3. (Example) Schedule 2
+4. (Example) Tag onChange
