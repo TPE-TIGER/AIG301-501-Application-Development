@@ -26,7 +26,7 @@ Below table gives you ideas how to select suitable application development way t
 
 ## ThingsPro Edge Application
 
-1. What is ThingsPro Edge Application
+1. [What is ThingsPro Edge Application](https://github.com/TPE-TIGER/TPE2-Application-Development/blob/main/documents/What%20is%20ThingsPro%20Edge%20Appliation.md)
 2. Build and Run "Hello World" Application
 3. Invoke ThingsPro Edge API on "Hello World" Application
 4. Subscribe and Publish Tag on "Hello World" Application
