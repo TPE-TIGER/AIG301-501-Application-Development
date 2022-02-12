@@ -188,5 +188,5 @@ This feature is available on ThingsPro Edge V2.2.1+.
 
 ##### 3.3 Done and Next Action
 
-- Use TagHub SDK on Hello World Application 2
+- <a href="Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a>
 
