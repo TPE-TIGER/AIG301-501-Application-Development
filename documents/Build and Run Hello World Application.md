@@ -247,5 +247,5 @@ Hello World.
 
 ##### 3.4 Done and Next Action
 
-Now, you have your custom ThingsPro Edge Application running on Moxa IIoT Gateway.
+- <a href="Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
 
