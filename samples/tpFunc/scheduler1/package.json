@@ -1,0 +1,66 @@
+{
+  "name": "scheduler1",
+  "enabled": true,
+  "trigger": {
+    "driven": "timeDriven",
+    "timeDriven": {
+      "mode": "cronJob",
+      "intervalSec": 1,
+      "cronJob": "0 * * * *"
+    }
+  },
+  "expose": {},
+  "executable": {
+    "language": "python"
+  },
+  "params": {
+    "timeLine": {
+      "00": [],
+      "01": [],
+      "02": [],
+      "03": [],
+      "04": [],
+      "05": [],
+      "06": [],
+      "07": [],
+      "08": ["01_Enable_SSH"],
+      "09": [],
+      "10": [],  
+      "11": [],     
+      "12": [],
+      "13": [],
+      "14": [],
+      "15": [],
+      "16": [],
+      "17": [],
+      "18": ["02_Disable_SSH"],
+      "19": [],
+      "20": [],
+      "21": [],
+      "22": [],
+      "23": []
+    },
+    "commands": {
+      "01_Enable_SSH": {
+        "displayName": "Enable SSH Service",
+        "enable": true,
+        "method": "PUT",
+        "endPoint": "/system/sshserver",
+        "payload": {
+          "enable": true,
+          "port": 22
+        }
+      },
+      "02_Disable_SSH": {
+        "displayName": "Disable SSH Service",
+        "enable": true,
+        "method": "PUT",
+        "endPoint": "/system/sshserver",
+        "payload": {
+          "enable": false,
+          "port": 22
+        }
+      }
+    }
+  }
+}
