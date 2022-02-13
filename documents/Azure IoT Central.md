@@ -62,7 +62,7 @@ This application demonstrates below features and possibility for your owned Thin
 
   - Create an Azure IoT Central account
 
-  - Create an IoT Device Template, and import <a href="https://github.com/KevinKao809/TPE-AzureIoTCentral/blob/main/tpe-app/src/data/deviceTemplateV0.5.json">DTDL file</a>, which required by this demo application.
+  - Create an IoT Device Template, and import <a href="../samples/TPE-App/AzureIoTCentral/src/data/deviceTemplateV0.5.json">DTDL file</a>, which required by this demo application.
 
   - Create an IoT Device, get it's connection meta data, and fill required data into demo application configuration form which show on above.
 
@@ -70,7 +70,7 @@ This application demonstrates below features and possibility for your owned Thin
 
 ### 2. Functionality
 
-This demo application contains 3 commands, 3 telemetries, and 5 properties, you also can find them on <a href="https://github.com/KevinKao809/TPE-AzureIoTCentral/blob/main/tpe-app/src/data/deviceTemplateV0.5.json">DTDL file</a>.
+This demo application contains 3 commands, 3 telemetries, and 5 properties, you also can find them on <a href="../samples/TPE-App/AzureIoTCentral/src/data/deviceTemplateV0.5.json">DTDL file</a>.
 
 ##### 2.1 Command
 
