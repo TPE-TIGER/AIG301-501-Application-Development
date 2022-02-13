@@ -29,8 +29,8 @@ Below table gives you ideas how to select suitable application development way t
 1. <a href="documents/What%20is%20ThingsPro%20Edge%20Appliation.md">What is ThingsPro Edge Application</a>
 2. <a href="documents/Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>
 3. <a href="documents/Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
-4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201.md">Use TagHub SDK on Hello World Application 1</a>
-5. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a>
+4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
+5. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
 6. (Example) Azure IoT Central Demo Application
 
 ## tpFunc Function
