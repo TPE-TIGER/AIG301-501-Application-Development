@@ -78,11 +78,6 @@ def post_tag():
 
 - Before to update a writable tag, this method allow us to create a virtual tag by Restful API.
 
-- We can use below 2 scripts at this sample code.
-
-  ```
-  
-  ```
 
 ##### 1.4 Define a method to Update a Virtual Tag Value via TagHub Python SDK
 
