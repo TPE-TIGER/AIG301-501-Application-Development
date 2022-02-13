@@ -35,6 +35,6 @@ Below table gives you ideas how to select suitable application development way t
 
 ## tpFunc Function
 1. What is tpFunc and tpFunc funciton
-2. (Example) Scheduled Operation Task 1 (by confg)
-3. (Example) Scheduled Operation Task 2 (by code)
+2. <a href="documents/Scheduled%20Operation%20Task%201.md">(Example) Scheduled Operation Task 1</a> (by confg)
+3. <a href="documents/Scheduled%20Operation%20Task%202.md">(Example) Scheduled Operation Task 2</a> (by code)
 4. (Example) Extend TagHub onChange Feature
