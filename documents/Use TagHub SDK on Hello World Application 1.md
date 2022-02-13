@@ -76,7 +76,7 @@ def post_tag():
         return "Bad payload."
 ```
 
-- Before to update a writable tag, this method allow us to create a virtual tag by Restful API.
+- Before update writable tags, this method allow us to create virtual tags by Restful API.
 
 
 ##### 1.4 Define a method to Update a Virtual Tag Value via TagHub Python SDK
