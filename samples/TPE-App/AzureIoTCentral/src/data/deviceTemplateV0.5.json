@@ -1,0 +1,92 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:com:moxa:TPE;1",
+    "@type": "Interface",
+    "displayName": "Device Management",
+    "description": "Send device performane counter; Update device ",
+    "contents": [     
+        {
+            "@type": "Command",
+            "name": "reboot",
+            "displayName": "Reboot",
+            "description": "Reboots the device after waiting the number of seconds specified.",
+            "request": {
+                "name": "delay",
+                "displayName": "Delay",
+                "description": "Number of seconds to wait before rebooting the device.",
+                "schema": "integer"
+            }
+        },  
+        {
+            "@type": "Command",
+            "name": "turnOnMonitor",
+            "displayName": "Turn on performance monitor",
+            "description": "Turn on performance monitor"        
+        },        
+        {
+            "@type": "Command",
+            "name": "turnOffMonitor",
+            "displayName": "Turn off performance monitor",
+            "description": "Turn off performance monitor"        
+        },        
+        {
+            "@type":"Telemetry",
+            "name": "cpuLoad",
+            "displayName": "cpu loading",
+            "description": "Current CPU loading",
+            "schema": "double"
+        },
+        {
+            "@type":"Telemetry",
+            "name": "lan1NetworkTx",
+            "displayName": "LAN1 Network TX",
+            "description": "LAN1 Network TX",
+            "schema": "integer"
+        },        
+        {
+            "@type":"Telemetry",
+            "name": "lan1NetworkRx",
+            "displayName": "LAN1 Network RX",
+            "description": "LAN1 Network RX",
+            "schema": "integer"
+        },
+        {
+            "@type": "Property",
+            "name": "general_serialNumber",
+            "displayName": "Serial Number",
+            "description": "Serial number of the device.",
+            "schema": "string"
+        },
+        {
+            "@type": "Property",
+            "name": "general_deviceModel",
+            "displayName": "Device Model",
+            "description": "Device model of the device.",
+            "schema": "string"
+        },
+        {
+            "@type": "Property",
+            "name": "general_hostName",
+            "displayName": "Host Name",
+            "description": "Host name of the device.",
+            "schema": "string",
+            "writable": true
+        },        
+        {
+            "@type": "Property",
+            "name": "service_ssh",
+            "displayName": "SSH service",
+            "description": "SSH service",
+            "schema": "boolean",
+            "writable": true
+        },
+        {
+            "@type": "Property",
+            "name": "ethernet_lan2_ip",
+            "displayName": "Ethernet Lan2 IP",
+            "description": "Ethernet Lan2 IP",
+            "schema": "string",
+            "writable": true
+        }
+    ]
+}

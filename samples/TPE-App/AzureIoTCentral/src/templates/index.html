@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+	<title>index.html</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Azure IoT Central</h1>
+	<form action="/login" method="POST">
+		<div class="status">
+			<div class="Azure IoT Central">
+				<div class="app-title">
+					<h3>Connection Status：<label id="aic_connection_status">Stop</label>
+						<input type="button" value="Start" id="aic_start_button">
+						<input type="button" value="Stop"id="aic_stop_button">
+					</h3>
+				</div>
+				<div id='aicStatusUpdatedAt'></div>
+			</div>
+		</div>
+		<div>
+			<hr>
+		</div>
+		<div class="config">
+			<div class="Azure IoT Central">
+				<div class="app-title">
+					<h3>Connection Configuration <input type="button" value="Save" id="configSaveButton"></h3>
+				</div>
+				<table>
+					<tr>
+						<td>DPS URL：</td>
+						<td><div id="dpsURL"></div></td>
+					</tr>
+					<tr>
+						<td>DPS Id Scope：</td>
+						<td><input type="text" value="" size="24" id="idScope"></td>
+					</tr>
+					<tr>
+						<td>Enrollment Options：</td>
+						<td><select name="enrollmentOptions" id="enrollmentOptions">
+								<option value="symmetric_key" selected>Symmetric Key</option>
+								<option value="X509">X.509</option>
+							</select></td>
+					</tr>
+				</table>
+
+				<table id="symmentrickKeyTable">
+					<tr>
+						<td>Registration ID (Device ID)：</td>
+						<td><input type="text" value="" size="60" id="registrationId-1"></td>
+					</tr>
+					<tr>
+						<td>Symmetric Key：</td>
+						<td><input type="text" value="" size="60" id="symmentricKey"></td>
+					</tr>
+				</table>
+
+				<table id="x509Table" border="0">
+					<tr>
+						<td>Registration ID (Device ID)：</td>
+						<td colspan="2"><input type="text" value="" size="60" id="registrationId-2"></td>
+					</tr>
+					<tr>
+						<td >Device Cert：</td>
+						<td><div id="currentDeviceCert"></div></td>
+						<td><input type="file" id="deviceCert" name="deviceCert"></td>
+					</tr>
+					<tr>
+						<td>Device Key：</td>
+						<td><div id="currentDeviceKey"></div></td>
+						<td><input type="file" id="deviceKey" name="deviceKey"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div>
+			<hr>
+		</div>		
+	</form>
+</body>
+<!-- Initialize App Script -->
+<script type="text/javascript">
+	function decodeHtml(html) {
+		var txt = document.createElement("textarea");
+		txt.innerHTML = html;
+		return txt.value;
+	}
+
+	function loadConfigtoUI() {
+		$('#dpsURL').html(_configJSONObj.provision.dps_host);
+		$('#idScope').val(_configJSONObj.provision.id_scope);	
+		$('#enrollmentOptions').val(_configJSONObj.provision.type);
+		if (_configJSONObj.provision.type == 'symmetric_key') {
+			$('#symmentrickKeyTable').show();
+			$('#x509Table').hide();
+		} else {
+			$('#symmentrickKeyTable').hide();
+			$('#x509Table').show();
+		}
+		$('#registrationId-1').val(_configJSONObj.provision.registration_id);
+		$('#symmentricKey').val(_configJSONObj.provision.symmetric_key);
+		$('#registrationId-2').val(_configJSONObj.provision.registration_id);
+		$('#currentDeviceCert').html(_configJSONObj.certificate.cert_file);
+		$('#currentDeviceKey').html(_configJSONObj.certificate.key_file);
+	}
+
+	function updateAICStatus() {
+		var connectionTime = new Date(_aicConnectionStatus.connectionTS * 1000);
+		$('#aic_connection_status').html(_aicConnectionStatus.connectionStatus);
+		$('#aicStatusUpdatedAt').html('updated : ' + connectionTime)
+		if (_aicConnectionStatus.connectionStatus == "Connected") {
+			$('#aic_start_button').hide();
+			$('#aic_stop_button').show();
+		} else {
+			$('#aic_start_button').show();
+			$('#aic_stop_button').hide();
+		}
+	}
+
+	$('#enrollmentOptions').change(function () {
+        if ($('#enrollmentOptions').val() == 'symmetric_key') {
+			$('#symmentrickKeyTable').show();
+			$('#x509Table').hide();
+		} else {
+			$('#symmentrickKeyTable').hide();
+			$('#x509Table').show();
+		}
+    });
+
+	$('#configSaveButton').click(function () {  
+		var configData = {}
+		var provision = {}
+		provision["id_scope"] = $('#idScope').val();
+		provision["type"] = $('#enrollmentOptions').val();
+		provision["registration_id"] = $('#registrationId-1').val();
+		provision["symmetric_key"] = $('#symmentricKey').val();
+		configData["provision"] = provision
+
+		var postData = new FormData();
+		postData.append('configData', JSON.stringify(configData));
+		
+		if ($("#deviceCert").val().length > 0) {
+            postData.append('deviceCert', $('#deviceCert')[0].files[0]);
+        }
+
+		if ($("#deviceKey").val().length > 0) {
+            postData.append('deviceKey', $('#deviceKey')[0].files[0]);
+        }
+
+        $.ajax({
+            type: "PUT",
+            url: "/api/v1/aic/config",
+            data: postData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                _configJSONObj = $.parseJSON(decodeHtml(data));
+				loadConfigtoUI();
+            },
+            error: function (XMLHttpRequest, ajaxOptions, thrownError) {
+                alert("got error from server API")
+            }
+        });
+    });
+
+	$('#aic_start_button').click(function () { 
+		$("body").css("cursor", "progress"); 
+		$('#aic_start_button').hide();
+		$('#aic_connection_status').html("..........");
+		$('#aicStatusUpdatedAt').html('updated : ')
+        $.ajax({
+            type: "PUT",
+            url: "/api/v1/aic/control/start",
+            data: null,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                _aicConnectionStatus = $.parseJSON(decodeHtml(data));
+				updateAICStatus();
+				$("body").css("cursor", "default");
+            },
+            error: function (XMLHttpRequest, ajaxOptions, thrownError) {
+                alert("got error from server API")
+            }
+        });
+    });	
+
+	$('#aic_stop_button').click(function () {  
+		$("body").css("cursor", "progress"); 
+		$('#aic_stop_button').hide();
+		$('#aic_connection_status').html("..........");
+		$('#aicStatusUpdatedAt').html('updated : ')
+        $.ajax({
+            type: "PUT",
+            url: "/api/v1/aic/control/stop",
+            data: null,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                _aicConnectionStatus = $.parseJSON(decodeHtml(data));
+				updateAICStatus();
+				$("body").css("cursor", "default");
+            },
+            error: function (XMLHttpRequest, ajaxOptions, thrownError) {
+                alert("got error from server API")
+            }
+        });
+    });	
+	
+	var _configJSONObj = $.parseJSON(decodeHtml('{{configData}}'));
+	var _aicConnectionStatus = $.parseJSON(decodeHtml('{{aicConnectionStatus}}'));
+
+	$(document).ready(function () {
+		loadConfigtoUI();
+		updateAICStatus();
+	});
+</script>
+
+</html>

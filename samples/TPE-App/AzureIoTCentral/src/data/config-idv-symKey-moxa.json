@@ -1,0 +1,16 @@
+{
+    "enable": true,
+    "pnpModelId" : "dtmi:com:moxa:TPE;1",
+    "provision": {
+        "dps_host": "global.azure-devices-provisioning.net",
+        "id_scope": "0ne000677D2",
+        "type": "symmetric_key",
+        "registration_id": "kevin-dps-registration-id",
+        "symmetric_key": ""
+    },
+    "certificate": {
+        "cert_file": "123",
+        "key_file": "456",
+        "trusted_cert": "abc"
+    }
+}

@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: aic
+  displayname: IoT Central Demo
+  version: 1.2-650
+  arch: armhf

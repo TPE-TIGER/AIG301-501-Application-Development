@@ -1,0 +1,6 @@
+version: '2'
+services:
+  app:
+    image: aic:1.2-650
+    volumes:
+      - ${APPMAN_APPPATH}/setting/:/var/thingspro/aic/data

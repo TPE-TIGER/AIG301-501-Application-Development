@@ -1,0 +1,16 @@
+{
+    "enable": true,
+    "pnpModelId" : "dtmi:com:moxa:TPE;1",
+    "provision": {
+        "dps_host": "global.azure-devices-provisioning.net",
+        "id_scope": "0ne000677D2",
+        "type": "X509",
+        "registration_id": "kkao",
+        "symmetric_key":""
+    },
+    "certificate": {
+        "cert_file": "D:\\OneDrive\\Moxa\\07.RootCA-Device-Cert\\DeviceCA\\kkao-device\\device.cer",
+        "key_file": "D:\\OneDrive\\Moxa\\07.RootCA-Device-Cert\\DeviceCA\\kkao-device\\device.key",
+        "trusted_cert": "abc"
+    }
+}
