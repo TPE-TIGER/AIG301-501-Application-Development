@@ -1,0 +1,37 @@
+{
+  "name": "onChangeTag",
+  "enabled": true,
+  "trigger": {
+    "driven": "dataDriven",
+    "dataDriven": {
+      "tags": {
+        "system": {
+          "status": [
+            "cpuUsage"
+          ]
+        }
+      },
+      "events": {}
+    },
+    "timeDriven": {
+      "mode": "boot",
+      "intervalSec": 1,
+      "cronJob": ""
+    }
+  },
+  "expose": {
+    "tags": [
+      {
+        "prvdName": "virtual",
+        "srcName": "onChange",
+        "tagName": "cpuUsage",
+        "dataType": "double",
+        "access": "rw"
+      }
+    ]
+  },
+  "executable": {
+    "language": "python"
+  },
+  "params": {}
+}

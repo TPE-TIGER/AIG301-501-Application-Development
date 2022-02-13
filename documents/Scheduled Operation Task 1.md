@@ -12,7 +12,7 @@ Document Version: V1.0
 
 ### Purpose
 
-This document demostrates how to use **tpFunc/Function** to perform a hourly based task by invoking ThingsPro Edge Restful API.
+This document demonstrates how to use **tpFunc/Function** to perform a hourly based task by invoking ThingsPro Edge Restful API.
 
 Note: **tpFunc** required ThingsPro Edge V2.2.1+
 
