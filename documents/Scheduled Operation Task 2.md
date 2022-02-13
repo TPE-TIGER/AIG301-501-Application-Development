@@ -1,4 +1,4 @@
-# Scheduled Operation Task 1
+# Scheduled Operation Task 2
 
 Document Version: V1.0
 
@@ -12,7 +12,7 @@ Document Version: V1.0
 
 ### Purpose
 
-This document demostrates how to use **tpFunc/Function** to perform a hourly based task by invoking ThingsPro Edge Restful API.
+This document demonstrates how to use **tpFunc/Function** to perform a hourly based task by invoking ThingsPro Edge Restful API with your business logic.
 
 Note: **tpFunc** required ThingsPro Edge V2.2.1+
 
@@ -32,25 +32,25 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
 3. Download schedule1.tar and unpack it
 
    ```
-   wget https://tpe2.azureedge.net/scheduler1.tar
+   wget https://tpe2.azureedge.net/scheduler2.tar
    
-   tar -xvf scheduler1.tar
+   tar -xvf scheduler2.tar
    ```
 
-   This command shall create **scheduler1** folder, and contains package.json and index.py files.
+   This command shall create **scheduler1*2 folder, and contains package.json and index.py files.
 
    ```
-   root@Moxa:/home/moxa/scheduler1# ls -l
+   root@Moxa:/home/moxa/scheduler2# ls -l
    total 5
-   -rwxrwxrwx 1 root root 2219 Feb 13 11:56 index.py
-   -rwxrwxrwx 1 root root 1311 Feb 13 12:10 package.json
+   -rwxrwxrwx 1 root root 3366 Feb 13 14:00 index.py
+   -rwxrwxrwx 1 root root  766 Feb 13 14:14 package.json
    ```
 
 4. Understand package.json
 
    ```
    {
-     "name": "scheduler1",
+     "name": "scheduler2",
      "enabled": true,
      "trigger": {
        "driven": "timeDriven",
@@ -65,54 +65,20 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
        "language": "python"
      },
      "params": {
-       "timeLine": {      
-         "08": ["01_Enable_SSH"],
-         "18": ["02_Disable_SSH"]
-       },
-       "commands": {
-         "01_Enable_SSH": {
-           "displayName": "Enable SSH Service",
-           "enable": true,
-           "method": "PUT",
-           "endPoint": "/system/sshserver",
-           "payload": {
-             "enable": true,
-             "port": 22
-           }
-         },
-         "02_Disable_SSH": {
-           "displayName": "Disable SSH Service",
-           "enable": true,
-           "method": "PUT",
-           "endPoint": "/system/sshserver",
-           "payload": {
-             "enable": false,
-             "port": 22
-           }
-         }
+       "timeLine": {
+         "08": ["Enable_AID()"],
+         "18": ["Disable_AID()"],
        }
      }
    }
    ```
-
-   1. First of all, you need to define all the ThingsPro Edge APIs (operation tasks) you would like to invoked under **params / commands** JSON section.
-
-      Command Name: **02_Disable_SSH**
-
-      | Key         | Value               | Desc                                                         |
-      | ----------- | ------------------- | ------------------------------------------------------------ |
-      | displayName | Disable SSH Service | Function will display the task status by displayName         |
-      | enable      | true                | enable/disable this task, even it be arranged into schedule. |
-      | method      | PUT                 | The method for this Restful API end point.                   |
-      | endPoint    | /system/sshserver   | The Restful API end point to be call.                        |
-      | payload     | {.....}             | The payload will submit to this Restful API                  |
-
-   2. Second, you need to define when to invoke which Commands you defined, under **params / timeLine** JSON section.
-
+   
+   - You need to define when to invoke which Commands, under **params / timeLine** JSON section.
+   
       - You don't need to declare full time range. Just the hours with commands.
       - You can declare multiple commands for an hour with JSON string array.
-
-5. Understand index.py
+   
+5. Understand index.py - **Main section**
 
    ```
    if __name__ == "__main__":
@@ -120,7 +86,6 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
        params = config.parameters()
        
        timeLine = params["timeLine"]
-       commands = params["commands"]
        
        now = datetime.now()
        timeFrame = now.strftime("%H")
@@ -128,23 +93,43 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
        
        if timeFrame in timeLine:
            commandList = timeLine[timeFrame]        
-           for cmdIdx in commandList:
-               cmd = commands[cmdIdx]
-               if (cmd["enable"]):
-                   print("Call API : " + cmd["displayName"])
-                   result = call_API(cmd["method"], cmd["endPoint"], cmd["payload"])
-                   print(result["status"])
-                   print(result["message"])
+           for cmdName in commandList:   
+               print("Invoke : " + cmdName)   
+               result = eval(cmdName)
+               print(result["status"])
+               print(result["message"])
        
        print("Shutdown ================")
        print("")
    ```
+   
+   - index.py will be launch by tpFunc every hour.
+   - index.py will check the current time, and pick up matched commands from timeLine.
+- index.py will call python's method by matched name of commands,  .
 
-   1. index.py will be launch by tpFunc every hour.
-   2. index.py will check the current time, and pick up matched commands from timeLine.
-   3. index.py will invoke ThingsPro Edge API by command, and output result on log of tpFunc.
+6. Implement all the Commands, for example **Enable_AID() method**
 
+   ```
+   def Enable_AID():
+       result = {}
+       config = get_AID_configuration()    
+       if config != None:
+           if config["provisioning"]["enable"]:
+               result["status"] = "success"
+               result["message"] = "Do nothing, the enable already true"
+           else:
+               config["provisioning"]["enable"] = True
+               result = call_API("PUT", "/azure-device", config)
+       else:
+           result["status"] = "fail"
+           result["message"] = "Can't read AID configuration"
+       return result
+   ```
 
+   - This method will be called by main process, according to the declaration on package.json
+   - You can implement it by business logic.
+
+   
 
 
 ### Add to tpFunc and Run
@@ -154,7 +139,7 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
    ```
    cd /home/moxa
    sudo su
-   tpfunc add scheduler1
+   tpfunc add scheduler2
    ```
 
 2. Verify there is no error on creation
@@ -164,7 +149,7 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
    +------------+--------+------------+------------+----------+-------+
    |    NAME    | ENABLE |    MODE    | LASTUPTIME |  STATE   | ERROR |
    +------------+--------+------------+------------+----------+-------+
-   | scheduler1 | true   | timeDriven |            | inactive |       |
+   | scheduler2 | true   | timeDriven |            | inactive |       |
    +------------+--------+------------+------------+----------+-------+
    ```
 
@@ -175,19 +160,11 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
    +------------+--------+------------+---------------------------+---------+-------+
    |    NAME    | ENABLE |    MODE    |        LASTUPTIME         |  STATE  | ERROR |
    +------------+--------+------------+---------------------------+---------+-------+
-   | scheduler1 | true   | timeDriven | 2022-02-13T13:00:00+08:00 | running |       |
+   | scheduler2 | true   | timeDriven | 2022-02-13T13:00:00+08:00 | running |       |
    +------------+--------+------------+---------------------------+---------+-------+
    
-   root@Moxa:/home/moxa# tpfunc log scheduler1
+   root@Moxa:/home/moxa# tpfunc log scheduler2
    [2022-02-13T13:00:03+08:00] Run 13 ================
    [2022-02-13T13:00:03+08:00] Shutdown ================
    [2022-02-13T13:00:03+08:00]
    ```
-
-
-
-### Next Action
-
-If your operation tasks are complex than a simple Restful API:
-
-- <a href="">Scheduled Operation Task 2</a>
