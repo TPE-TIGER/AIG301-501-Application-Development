@@ -13,19 +13,18 @@ Below table gives you ideas how to select suitable application development way t
 | Language               | All programing language                                      | Python 3                                              |
 | TagHub SDK             | Python and Go Lang SDK                                       | Python SDK                                            |
 | Access TPE API         | OK                                                           | OK                                                    |
-| LAN Access             | OK (by Docker Container)                                     | OK (by tpFunc)                                        |
-| WAN Access             | OK (by Docker Container)                                     | OK (by tpFunc)                                        |
-| Storage Access         | OK (by Docker Container)                                     | X                                                     |
-| Serial Port Access     | OK (by Docker Container)                                     | X                                                     |
-| BLE Access             | OK (by Docker Container)                                     | X                                                     |
-| Expose Restful API     | OK (by Docker Container)                                     | OK (by tpFunc)                                        |
-| Expose Web GUI         | OK (by Docker Container)                                     | X                                                     |
+| LAN Access             | OK                                    | OK                                      |
+| WAN Access             | OK                                      | OK                                        |
+| Storage Access         | OK                                      | X                                                     |
+| Serial Port Access     | OK (*)                                     | X                                                     |
+| BLE Access             | OK (*)                                     | X                                                     |
+| Expose Restful API     | OK                                      | OK                                         |
+| Expose Web GUI         | OK                                      | X                                                     |
 | Knowledge Require      | Docker container<br />Application design<br />Linux Driver & Utility<br />ThingsPro Edge Application build and deployment | Python coding<br />tpFunc deployment                  |
 | Program Design Pattern | By your own                                                  | - Time Driven<br />- Data Driven<br />- Web API Style |
 | Other Limitations      |                                                              | - One source code                                     |
 
-
-
+(*) Need to mount physical resources into Docker container
 
 ## ThingsPro Edge Application
 
