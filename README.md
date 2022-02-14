@@ -34,10 +34,10 @@ Below table gives you ideas how to select suitable application development way t
 4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
 5. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
 6. <a href="documents/Azure%20IoT%20Central.md">(Example) Azure IoT Central Demo Application</a>
+7. (Example) OPC UA Client Application
 
 ## tpFunc Function
 1. What is tpFunc and tpFunc funciton
 2. <a href="documents/Scheduled%20Operation%20Task%201.md">(Example) Scheduled Operation Task 1</a> (by confg)
 3. <a href="documents/Scheduled%20Operation%20Task%202.md">(Example) Scheduled Operation Task 2</a> (by code)
 4. <a href="documents/Enable%20onChange%20Feature%20on%20TagHub.md">(Example) Enable onChange Feature on TagHub</a> 
-5. (Example) OPC UA Client Function
