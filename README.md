@@ -22,6 +22,7 @@ Below table gives you ideas how to select suitable application development way t
 | Expose Web GUI         | OK (by Docker Container)                                     | X                                                     |
 | Knowledge Require      | Docker container<br />Application design<br />Linux Driver & Utility<br />ThingsPro Edge Application build and deployment | Python coding<br />tpFunc deployment                  |
 | Program Design Pattern | By your own                                                  | - Time Driven<br />- Data Driven<br />- Web API Style |
+| Other Limitations      |                                                              | - One source code                                     |
 
 
 
