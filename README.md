@@ -11,7 +11,7 @@ Below table gives you ideas how to select suitable application development way t
 | ---------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
 | Framework              | Docker container managed by ThingsPro Edge                   | Python program managed by tpFunc                      |
 | Language               | All programing language                                      | Python 3                                              |
-| TagHub SDK             | Python and Go Lang SDK                                       | Python SDK                                            |
+| TagHub SDK             | Python, C and Go Lang SDK                                       | Python SDK                                            |
 | Access TPE API         | OK                                                           | OK                                                    |
 | LAN Access             | OK                                    | OK                                      |
 | WAN Access             | OK                                      | OK                                        |
