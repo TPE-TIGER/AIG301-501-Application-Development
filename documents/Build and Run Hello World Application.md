@@ -4,9 +4,10 @@ Document Version: V1.0
 
 ##### Change Log
 
-| Version | Date       | Content          |
-| ------- | ---------- | ---------------- |
-| 1.0     | 2022-02-10 | Document created |
+| Version | Date       | Content           |
+| ------- | ---------- | ----------------- |
+| 1.0     | 2022-02-10 | Document created  |
+| 1.1     | 2022-02-16 | Add dotnet core 6 |
 
 
 
@@ -29,12 +30,12 @@ This document guide you how to develop, build and deploy a simple ThingsPro Edge
 
 ------
 
-### 2. Develop Your Application
+### 2. Develop Your Application (Python3)
 
 #### 2.1 Download Hello World Application
 
 ```
-$ wget https://tpe2.azureedge.net/HelloWorldApp10.tar
+$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp10.tar
 
 $ tar -xvf HelloWorldApp10.tar
 ```
@@ -160,12 +161,146 @@ drwxrwxrwx 2 root root     4096 Feb 12 05:39 app
 -rwxrwxrwx 1 root root      107 Feb 12 05:42 metadata.yml
 -rwxrwxrwx 1 root root      285 Feb 12 05:43 nginx.conf
 -rwxrwxrwx 1 root root       12 Nov  9  2019 requirements.txt
-
 ```
 
 
 
-### 3. Deploy Application on Moxa IIoT Gateway
+### 3. Develop Your Application (dotnet core 6)
+
+#### 3.1 Download Hello World Application
+
+```
+$ wget https://tpe2.azureedge.net/dotnet-core-6/HelloWorldApp10.tar
+
+$ tar -xvf HelloWorldApp10.tar
+```
+
+#### 3.2 ThingsPro Edge Application Structure
+
+| Name               | Type   | Note                                                         |
+| ------------------ | ------ | ------------------------------------------------------------ |
+| Dockerfile         | File   | Build this application                                       |
+| app                | Folder | Source code of this application.<br />.NET core 6 project.   |
+| docker-compose.yml | File   | Use by ThingsPro Edge to launch this application.            |
+| metadata.yml       | File   | Use by ThingsPro Edge to understand this application.        |
+| nginx.conf         | File   | A Nginx file to declare this application exposes restful API path, and plug-into ThingsPro Edge API framework. |
+
+#### 3.3 Build Docker Image
+
+##### 3.3.1 change current directory to "HelloWorldApp10"
+
+```
+$ cd HelloWorldApp10
+```
+
+##### 3.3.2 launch ThingsPro App Builder docker container
+
+Using below command to launch "ThingsPro Develop Kit", and entry "ThingsPro App Builder" shell
+
+```
+$ docker run --rm -it -v $(pwd):/app/ -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock moxa2019/thingspro-app-builder:1.0 bash
+```
+
+##### 3.3.3 change directory to "app" folder
+
+The "ThingsPro App Builder" will mount host's current folder at /app. 
+
+```
+$ cd /app
+```
+
+##### 3.3.4 build docker image with app name: <font color='green'><b>hello-world:1.0</b></font>
+
+At /app folder, build your docker image with application name and tag.
+
+```
+$ docker build -t hello-world:1.0 .
+```
+
+Ignore all <font color='red'>mount: permission denied</font> message and all warning messages.
+
+#### 3.4 Pack Docker Image as ThingsPro Edge Application
+
+##### 3.4.1 Edit docker-compose.yml 
+
+Make sure app image matched with <font color='green'><b>hello-world:1.0</b></font> 
+
+```
+version: '2'
+services:
+  app:
+    image: hello-world:1.0
+    privileged: true
+```
+
+| Item       | Note                                                         |
+| ---------- | ------------------------------------------------------------ |
+| image      | Docker image path                                            |
+| privileged | We need this permission to fix dotnet core 6 issue on arm32 Linux.<br />https://github.com/dotnet/dotnet-docker/issues/3253 |
+
+##### 3.4.2 Edit metadata.yaml
+
+Make sure app name matched with <font color='green'><b>hello-world</b></font>
+
+Make sure version matched with <font color='green'><b>1.0</b></font>
+
+```
+kind: app
+version: v1
+spec:
+  name: hello-world
+  displayname: Hello World App
+  version: 1.0
+  arch: armhf
+```
+
+##### 3.4.3 Edit nginx.conf
+
+```
+location ^~ /api/v1/hello-world {
+   auth_request /api/v1/auth;
+   auth_request_set $auth_status $upstream_status;
+   proxy_set_header X-Real-IP $remote_addr;
+   proxy_set_header X-Forwarded-For $remote_addr;
+   proxy_set_header Host $host;
+   proxy_pass http://helloworld_app_1;
+}
+```
+
+| No   | Item                                | Note                                                         |
+| ---- | ----------------------------------- | ------------------------------------------------------------ |
+| 1    | ^~ /api/v1/hello-world              | Match application Restful API end point start with ..        |
+| 2    | auth_request /api/v1/auth;          | If the application would like to co-op ThingsPro Edge API authentication<br />: keep this line<br />: else remove this line. |
+| 3    | proxy_pass http://helloworld_app_1; | ThingsPro Edge redirects matched end point to your docker container.<br />Please watch out the naming convention at below Note. |
+
+Note: ThingsPro Edge launch docker image as container, and label container by a name, the naming rules are:
+
+1. fetch 'name' field from metadata.yaml. (**hello-world**)
+2. remove all the character other than [a-z] and [0-9]. (**helloworld**)
+3. append '_app_1'. (**helloworld_app_1**)
+
+##### 3.4.4 Pack as ThingsPro Edge Application
+
+```
+$ tdk pack
+```
+
+##### 3.4.5 Build Complete
+
+**helloworld_1_armhf.mpkg** success generated.
+
+```
+drwxrwxrwx 5 root root     4096 Feb 15 03:25 app
+-rwxrwxrwx 1 root root       77 Feb 15 02:53 docker-compose.yml
+-rwxrwxrwx 1 root root      505 Feb 15 03:32 Dockerfile
+-rw-r--r-- 1 root root 59269120 Feb 15 03:38 hello-world_1_armhf.mpkg
+-rwxrwxrwx 1 root root      107 Feb 12 05:42 metadata.yml
+-rwxrwxrwx 1 root root      281 Feb 12 05:59 nginx.conf
+```
+
+
+
+### 4. Deploy Application on Moxa IIoT Gateway
 
 ##### 3.1 Copy **helloworld_1_armhf.mpkg** to Moxa IIoT Gateway
 
