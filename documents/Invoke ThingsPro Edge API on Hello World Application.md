@@ -1,12 +1,13 @@
 # Invoke ThingsPro Edge API on Hello World Application
 
-Document Version: V1.0
+Document Version: V1.1
 
 ##### Change Log
 
-| Version | Date       | Content          |
-| ------- | ---------- | ---------------- |
-| 1.0     | 2022-02-10 | Document created |
+| Version | Date       | Content                 |
+| ------- | ---------- | ----------------------- |
+| 1.0     | 2022-02-10 | Document created        |
+| 1.1     | 2022-02-16 | Add .Net core C# sample |
 
 
 
@@ -21,7 +22,7 @@ You shall complete pre-request step: <a href="Build%20and%20Run%20Hello%20World%
 
 ------
 
-### 1. Modify Python Code
+### 1. Modify Code (Python)
 
 ##### 1.1 Add Python packages
 
@@ -91,12 +92,12 @@ This new Restful API will invoke ThingsPro Edge Restful API: /api/v1/apps, and r
 
 
 
-### 2. Develop Your Application
+### 2. Build Your Application
 
 #### 2.1 Download Hello World Application 1.1
 
 ```
-$ wget https://tpe2.azureedge.net/HelloWorldApp11.tar
+$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp11.tar
 ```
 
 #### 2.2 ThingsPro Edge Application 1.1 Structure
@@ -147,4 +148,14 @@ Server","desiredState":"ready","displayName":"OPCUA Server","hardwares":[],"heal
 ##### 3.4 Done and Next Action
 
 - <a href="Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201.md">Use TagHub SDK on Hello World Application 1</a>
+
+
+
+### Appendix
+
+For .Net Core C# developer, download the sample code:
+
+```
+$ wget https://tpe2.azureedge.net/dotnet-core-6/HelloWorldApp11.tar
+```
 

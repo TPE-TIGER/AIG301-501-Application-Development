@@ -122,7 +122,7 @@ def tagDataCallback(self, data={}):
 #### 2.1 Download Hello World Application 1.3
 
 ```
-$ wget https://tpe2.azureedge.net/HelloWorldApp13.tar
+$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp13.tar
 ```
 
 #### 2.2 ThingsPro Edge Application 1.2 Structure

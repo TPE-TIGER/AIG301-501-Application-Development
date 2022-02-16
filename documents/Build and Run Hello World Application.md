@@ -1,13 +1,13 @@
 # Build and Run "Hello World" Application
 
-Document Version: V1.0
+Document Version: V1.1
 
 ##### Change Log
 
-| Version | Date       | Content           |
-| ------- | ---------- | ----------------- |
-| 1.0     | 2022-02-10 | Document created  |
-| 1.1     | 2022-02-16 | Add dotnet core 6 |
+| Version | Date       | Content            |
+| ------- | ---------- | ------------------ |
+| 1.0     | 2022-02-10 | Document created   |
+| 1.1     | 2022-02-16 | Add .Net core 6 C# |
 
 
 
@@ -165,7 +165,7 @@ drwxrwxrwx 2 root root     4096 Feb 12 05:39 app
 
 
 
-### 3. Develop Your Application (dotnet core 6)
+### 3. Develop Your Application (.Net core 6 C#)
 
 #### 3.1 Download Hello World Application
 

@@ -1,0 +1,5 @@
+version: '2'
+services:
+  app:
+    image: hello-world:1.1
+    privileged: true
