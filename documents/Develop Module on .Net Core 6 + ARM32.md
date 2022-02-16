@@ -83,9 +83,9 @@ Ignore all <font color='red'>mount: permission denied</font> message and all war
 
 #### 2.4 Push Docker image to public site
 
-##### 2.4.1 Push to Docker Hub
+##### 2.4.1 Push to Container Registry
 
-We use moxa2019/sample-module:1.0 as example. You shall change to your own container register.
+We use moxa2019/sample-module:1.0 as example. You shall change to your own container registry.
 
 ```
 root@moxa:/home/moxa/SampleModule# docker push moxa2019/sample-module:1.0
