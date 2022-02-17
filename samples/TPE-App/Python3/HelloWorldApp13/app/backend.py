@@ -60,7 +60,7 @@ class backendProcess():
             self.publisher.publish(tag03)
             
             if (F >= 100):     
-                tag01Value = 'Over Hit'
+                tag01Value = 'Over Heat'
             else:
                 tag01Value = 'Normal'                     
             tag01 = {
