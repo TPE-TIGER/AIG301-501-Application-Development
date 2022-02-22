@@ -114,7 +114,7 @@ $ wget https://tpe2.azureedge.net/Python3/HelloWorldApp11.tar
 
 #### 2.3 Build ThingsPro Edge Applicaiton
 
-Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>, to build hello-world application V1.1
+Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>, to build hello-world application V1.1
 
 ```
 drwxrwxrwx 2 root root     4096 Feb 12 06:29 app
@@ -134,7 +134,7 @@ drwxrwxrwx 2 root root     4096 Feb 12 06:29 app
 
 ##### 3.1 Deploy hello-world V1.1
 
-Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>, to deploy hello-world application V1.1
+Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>, to deploy hello-world application V1.1
 
 ##### 3.2 Testing new Restful API: /api/v1/hello-world/tpe-apps
 
