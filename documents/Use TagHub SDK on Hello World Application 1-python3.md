@@ -16,8 +16,8 @@ This document guide you how to use **TagHub Python SDK** on Hello World Applicat
 
 You shall complete pre-request steps:
 
-- <a href="Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>.
-- <a href="Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application.md">Invoke ThingsPro Edge API on Hello World Application</a>
+- <a href="Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>.
+- <a href="Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application-python3.md">Invoke ThingsPro Edge API on Hello World Application</a>
 
 
 
@@ -131,7 +131,7 @@ $ wget https://tpe2.azureedge.net/Python3/HelloWorldApp12.tar
 
 #### 2.3 Build ThingsPro Edge Applicaiton
 
-Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>, to build hello-world application V1.2
+Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>, to build hello-world application V1.2
 
 ```
 drwxrwxrwx 2 root root      4096 Feb 12 15:28 app
@@ -149,7 +149,7 @@ drwxrwxrwx 2 root root      4096 Feb 12 15:28 app
 
 ##### 3.1 Deploy hello-world V1.2
 
-Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>, to deploy hello-world application V1.2
+Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>, to deploy hello-world application V1.2
 
 ##### 3.2 Testing 
 
@@ -183,5 +183,5 @@ This feature is available on ThingsPro Edge V2.2.1+.
 
 ##### 3.3 Done and Next Action
 
-- <a href="Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a>
+- <a href="Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202-python3.md">Use TagHub SDK on Hello World Application 2</a>
 
