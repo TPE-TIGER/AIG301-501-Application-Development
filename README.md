@@ -32,16 +32,16 @@ Below table gives you ideas how to select suitable application development way t
 #### Python3 Sample App
 1. <a href="documents/Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>
 2. <a href="documents/Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application-python3.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
-3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
-4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
+3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201-python3.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
+4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202-python3.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
 5. <a href="documents/Azure%20IoT%20Central.md">(Example) Azure IoT Central Demo Application</a>
 6. (Example) OPC UA Client Application
 
 #### Dotnet Core C# Sample App
 1. <a href="documents/Build%20and%20Run%20Hello%20World%20Application-dotnet.md">Build and Run "Hello World" Application</a>
 2. <a href="documents/Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application-dotnet.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
-3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
-4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
+3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201-dotnet.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
+4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202-dotnet.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
 
 ## tpFunc Function
 1. <a href="https://github.com/TPE-TIGER/tpe-function-sdk">What is tpFunc and tpFunc funciton</a>
