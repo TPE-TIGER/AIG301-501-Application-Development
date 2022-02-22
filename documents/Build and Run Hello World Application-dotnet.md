@@ -246,5 +246,5 @@ Hello World.
 
 ##### 3.4 Done and Next Action
 
-- <a href="Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
+- <a href="Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application-dotnet.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
 
