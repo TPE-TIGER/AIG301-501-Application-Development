@@ -14,7 +14,7 @@ Document Version: V1.0
 
 This document guide you how to invoke ThingsPro Edge API on Hello World Application.
 
-You shall complete pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application.md">Build and Run "Hello World" Application</a>.
+You shall complete pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-python3.md">Build and Run "Hello World" Application</a>.
 
 
 
