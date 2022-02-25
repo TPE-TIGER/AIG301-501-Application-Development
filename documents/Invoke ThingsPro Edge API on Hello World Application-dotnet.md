@@ -6,7 +6,7 @@ Document Version: V1.0
 
 | Version | Date       | Content          |
 | ------- | ---------- | ---------------- |
-| 1.0     | 2022-02-16 | Document created |
+| 1.0     | 2022-02-19 | Document created |
 
 
 
@@ -25,7 +25,7 @@ You shall complete pre-request step: <a href="Build%20and%20Run%20Hello%20World%
 
 ##### 1.1 Add TPE_Helper.cs
 
-TPE_Helper.cs contains a TPE_Helper class, which allow to invoke TPE's Restful API easily.
+TPE_Helper.cs contains a TPE_Helper class, which allows to invoke TPE's Restful API easily.
 
 ##### 1.2 Construct of TPE_Helper
 

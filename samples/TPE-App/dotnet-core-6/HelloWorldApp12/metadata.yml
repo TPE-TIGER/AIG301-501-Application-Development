@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: hello-world
+  displayname: Hello World App
+  version: 1.2
+  arch: armhf

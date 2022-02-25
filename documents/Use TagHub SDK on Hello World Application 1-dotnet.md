@@ -6,13 +6,13 @@ Document Version: V1.0
 
 | Version | Date       | Content          |
 | ------- | ---------- | ---------------- |
-| 1.0     | 2022-02-10 | Document created |
+| 1.0     | 2022-02-25 | Document created |
 
 
 
 ### Purpose
 
-This document guide you how to use **TagHub Python SDK** on Hello World Application to **publish** Tag data.
+This document guide you how to call **TagHub C Lib SDK** via C# (dotnet core 6) on Hello World Application to **publish** Tag data.
 
 You shall complete pre-request steps:
 
@@ -24,85 +24,116 @@ You shall complete pre-request steps:
 
 ------
 
-### 1. Modify Python Code
+### 1. Modify C# Code
 
-##### 1.1 Add Python packages
-
-```
-import os, requests, time, json
-from thingspro.edge.tag_v1 import tag
-```
-
-- thingspro.edge.tag_v1 is TagHub Python SDK.
-
-##### 1.2 Define Tag Publisher
+##### 1.1 Add TagSDK_Helper.cs and TagType.cs
 
 ```
-_publisher = tag.Publisher()
+public unsafe class Publisher : TagType
+{    
+    // Load C Lib and declare 3 APIs
+    const string DLL_Path = "/usr/lib/arm-linux-gnueabihf/libmx-dx.so";
+    [DllImport(DLL_Path)]
+    private static extern UIntPtr dx_tag_client_init([In, MarshalAs(UnmanagedType.LPStr)] string moduleName);
+    
+    .....
+    
+    // publish mehtod to build C Lib data structure
+    public unsafe int publish(Dictionary<string,object> tag)
+    {
+        string prvdName, srcName, tagName, valueTypeString;
+        TAG_VALUE_TYPE valueType;
+        TAG_VALUE tagValue = new TAG_VALUE();
+        
+        ....
+        
+        return (int)publish(prvdName, srcName, tagName, valueType, tagValue);
+    } 
 ```
 
-- We will use _publisher to update Tag value.
+- TagSDK_Helper container Publisher class which imports TagHub C Lib SDK, and expose method: publish allows developer to update a tag's value.
+- TagType.cs contains required data structures which mapping with TagHub C Lib headers.
 
-
-##### 1.3 Define a method to Create a Virtual Tag via ThingsPro Edge Restful API
-
-```
-#post /api/v1/hello-world/tag
-@app.route('/api/v1/hello-world/tag', methods=['POST'])
-def post_tag():
-    newTag = request.json    
-    if ('prvdName' in newTag) and ('srcName' in newTag) and ('tagName' in newTag) and ('dataType' in newTag):    
-        try:
-            result = call_API('get', '/tags/list?provider='+newTag['prvdName'], None)
-            messageJson = json.loads(result["message"])
-            if "data" in messageJson:
-                tagList = messageJson["data"]            
-                for tag in tagList:
-                    if (tag['srcName'] == newTag['srcName']) and (tag['tagName'] == newTag['tagName']):
-                        return "OK"         # Tag already there, return            
-            # Create Tag
-            postTag = {
-                'prvdName': newTag['prvdName'],
-                'srcName': newTag['srcName'],
-                'tagName': newTag['tagName'],            
-                'dataType': newTag['dataType'],
-                'access': 'rw'
-            }    
-            result = call_API('post', '/tags/virtual', postTag)
-            return 'OK'
-        except Exception as e:
-            return str(e) 
-    else:
-        return "Bad payload."
-```
-
-- Before update writable tags, this method allow us to create virtual tags by Restful API.
-
-
-##### 1.4 Define a method to Update a Virtual Tag Value via TagHub Python SDK
+##### 1.2 Define Tag Publisher on Program.cs
 
 ```
-#put /api/v1/hello-world/tag
-@app.route('/api/v1/hello-world/tag', methods=['PUT'])
-def put_tag():
-    newTagValue = request.json
-    if ('prvdName' in newTagValue) and ('srcName' in newTagValue) and ('tagName' in newTagValue) and ('dataValue' in newTagValue) and ('dataType' in newTagValue):
-        timestamp=int(time.time()*1000000)
-        try:
-            tagValue = {
-                'prvdName': newTagValue['prvdName'],
-                'srcName': newTagValue['srcName'],
-                'tagName': newTagValue['tagName'],            
-                'dataValue': newTagValue['value'],
-                'dataType': newTagValue['dataType'],
-                'ts': timestamp        
-            }    
-            _publisher.publish(tagValue)  
-            return 'OK'
-        except Exception as e:
-            return str(e)    
-    else:
-        return "Bad payload."
+Publisher _publisher = new Publisher();
+```
+
+- We will use _publisher to update Tag value on Program.cs
+
+
+##### 1.3 Define a method on Program.cs to Create a Virtual Tag via ThingsPro Edge Restful API
+
+```
+app.MapPost("/api/v1/hello-world/tag", (TagObj tagObj) =>
+{
+    if ((tagObj.prvdName != null) && (tagObj.srcName != null) && (tagObj.tagName != null) && (tagObj.dataType != null))
+    {
+        try
+        {            var result = tpeHelper.call_API("get", "/tags/list?provider=" + tagObj.prvdName, "");
+            var jsonObj = JsonDocument.Parse(result);
+            foreach (JsonElement elem in jsonObj.RootElement.GetProperty("data").EnumerateArray())
+            {
+                if ((elem.GetProperty("srcName").ToString() == tagObj.srcName) && (elem.GetProperty("tagName").ToString() == tagObj.tagName))
+                    return "OK";
+            }
+            // Create Tag
+            tagObj.access = "rw";
+            string postTag = JsonSerializer.Serialize(tagObj);
+            result = tpeHelper.call_API("post", "/tags/virtual", postTag);
+            return "OK";
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+    }
+    else
+    {
+        return "Bad payload.";
+    }
+});
+```
+
+- Before update writable tags, this method allows us to create virtual tags by Restful API.
+
+
+##### 1.4 Define a method on Program.cs to Update a Virtual Tag Value via TagHub C Lib SDK
+
+```
+app.MapPut("/api/v1/hello-world/tag", (TagObj tagObj) =>
+{
+    if ((tagObj.prvdName != null) && (tagObj.srcName != null) && (tagObj.tagName != null) && (tagObj.dataType != null) && (tagObj.dataValue != null))
+    {
+        Dictionary<string, object> tagDict = new Dictionary<string, object>();
+        try
+        {
+            tagDict.Add("prvdName", tagObj.prvdName);
+            tagDict.Add("srcName", tagObj.srcName);
+            tagDict.Add("tagName", tagObj.tagName);
+            tagDict.Add("dataType", tagObj.dataType);
+            System.Text.Json.JsonElement valueJObject = (System.Text.Json.JsonElement)tagObj.dataValue;
+            switch (tagObj.dataType)
+            {
+                case "boolen":
+                    tagDict.Add("dataValue", valueJObject.GetBoolean());
+                    break;
+               	......
+            }
+            var rc = _publisher.publish(tagDict);
+            return rc.ToString();
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+    }
+    else
+    {
+        return "Bad payload.";
+    }
+});
 ```
 
 - _publisher.publish() will update **Tag**'s value.
@@ -115,32 +146,31 @@ def put_tag():
 #### 2.1 Download Hello World Application 1.2
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp12.tar
+$ wget https://tpe2.azureedge.net/dotnet-core-6/HelloWorldApp12.tar
 ```
 
 #### 2.2 ThingsPro Edge Application 1.2 Structure
 
-| Name               | Type   | Note                                    |
-| ------------------ | ------ | --------------------------------------- |
-| Dockerfile         | File   | Same with 1.0                           |
-| app                | Folder | Update with TagHub SDK code             |
-| docker-compose.yml | File   | Update version to 1.2                   |
-| metadata.yml       | File   | Update version to 1.2                   |
-| nginx.conf         | File   | Same with 1.0                           |
-| requirements.tx    | File   | Update required packages for TagHub SDK |
+| Name               | Type   | Note                                       |
+| ------------------ | ------ | ------------------------------------------ |
+| Dockerfile         | File   | Add TagHub C Lib SDK and required packages |
+| app                | Folder | Update with TagHub C Lib SDK code          |
+| docker-compose.yml | File   | Update version to 1.2                      |
+| metadata.yml       | File   | Update version to 1.2                      |
+| nginx.conf         | File   | Same with 1.0                              |
 
 #### 2.3 Build ThingsPro Edge Applicaiton
 
 Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-dotnet.md">Build and Run "Hello World" Application</a>, to build hello-world application V1.2
 
 ```
-drwxrwxrwx 2 root root      4096 Feb 12 15:28 app
--rwxrwxrwx 1 root root        56 Feb 12 08:46 docker-compose.yml
--rwxrwxrwx 1 root root       851 Feb 12 15:35 Dockerfile
--rw-r--r-- 1 root root 136970240 Feb 12 16:11 hello-world_1.2_armhf.mpkg
--rwxrwxrwx 1 root root       107 Feb 12 08:46 metadata.yml
--rwxrwxrwx 1 root root       281 Feb 12 08:46 nginx.conf
--rwxrwxrwx 1 root root        73 Feb 12 13:07 requirements.txt
+drwxrwxrwx 5 root root      4096 Feb 23 15:44 app
+-rwxrwxrwx 1 root root       877 Feb 24 16:59 build-step.txt
+-rwxrwxrwx 1 root root        78 Feb 25 01:06 docker-compose.yml
+-rwxrwxrwx 1 root root      1881 Feb 25 00:54 Dockerfile
+-rw-r--r-- 1 root root 133355520 Feb 25 01:13 hello-world_1.2_armhf.mpkg
+-rwxrwxrwx 1 root root       107 Feb 23 15:18 metadata.yml
+-rwxrwxrwx 1 root root       281 Feb 12 05:59 nginx.conf
 ```
 
 
