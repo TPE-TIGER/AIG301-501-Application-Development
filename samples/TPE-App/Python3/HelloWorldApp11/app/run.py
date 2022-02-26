@@ -13,6 +13,7 @@ _headers = {}
 _headers["Content-Type"] = 'application/json'
 f=open('/run/mx-api-token', 'r')
 _headers["mx-api-token"] = f.read()
+f.close()
 
 def call_API(method, endPoint, payload):    
     result = {}
