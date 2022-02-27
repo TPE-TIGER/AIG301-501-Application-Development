@@ -4,7 +4,7 @@ var app = builder.Build();
 
 app.MapGet("/api/v1/hello-world", () => 
 {
-    return "Hello World";
+    return "Hello World.";
 });
 
 

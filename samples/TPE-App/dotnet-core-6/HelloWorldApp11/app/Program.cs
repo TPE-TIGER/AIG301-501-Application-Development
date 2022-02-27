@@ -5,7 +5,7 @@ var tpeHelper = new TPE_Helper();
 
 app.MapGet("/api/v1/hello-world", () => 
 {
-    return "Hello World";
+    return "Hello World.";
 });
 
 app.MapGet("/api/v1/hello-world/tpe-apps", () => 

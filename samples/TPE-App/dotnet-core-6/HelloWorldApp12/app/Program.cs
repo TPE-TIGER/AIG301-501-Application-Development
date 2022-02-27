@@ -8,7 +8,7 @@ Publisher _publisher = new Publisher();
 
 app.MapGet("/api/v1/hello-world", () =>
 {
-    return "Hello World";
+    return "Hello World.";
 });
 
 app.MapGet("/api/v1/hello-world/tpe-apps", () =>
