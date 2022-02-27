@@ -1,0 +1,15 @@
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.csproj.AssemblyReference.cache
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.AssemblyInfoInputs.cache
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.AssemblyInfo.cs
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.csproj.CoreCompileInputs.cache
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\bin\Debug\net6.0\HelloWorldApp13_2.exe
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\bin\Debug\net6.0\HelloWorldApp13_2.deps.json
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\bin\Debug\net6.0\HelloWorldApp13_2.runtimeconfig.json
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\bin\Debug\net6.0\HelloWorldApp13_2.dll
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\bin\Debug\net6.0\ref\HelloWorldApp13_2.dll
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\bin\Debug\net6.0\HelloWorldApp13_2.pdb
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.dll
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\ref\HelloWorldApp13_2.dll
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.pdb
+D:\OneDrive\Git2\aspnet\HelloWorldApp13\app2\obj\Debug\net6.0\HelloWorldApp13_2.genruntimeconfig.cache
