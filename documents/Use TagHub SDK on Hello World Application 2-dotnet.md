@@ -6,13 +6,13 @@ Document Version: V1.0
 
 | Version | Date       | Content          |
 | ------- | ---------- | ---------------- |
-| 1.0     | 2022-02-10 | Document created |
+| 1.0     | 2022-02-27 | Document created |
 
 
 
 ### Purpose
 
-This document guide you how to use **TagHub Python SDK** on Hello World Application to **subscribe** Tag data for edge computing.
+This document guide you how to use **TagHub C SDK** on Hello World Application to **subscribe** Tag data for edge computing.
 
 You shall complete pre-request steps:
 
@@ -25,56 +25,53 @@ You shall complete pre-request steps:
 
 ------
 
-### 1. Add backend.py Python Code
+### 1. Add backendProcess Class
 
-We need to add one python script, running at backend to subscribe Tags and do some edge computing tasks.
+We need to create a new dotnet core console project to subscribe and process tags on backend. You can find it on folder 'app2'.
 
-##### 1.1 Create backend.py and add Python packages
+##### 1.1 Create new folder 'app2'
 
-```
-import time, requests
-from thingspro.edge.tag_v1 import tag
-```
+- Change original folder 'app' to 'app1'
+- Rename original project 'HelloWorldApp13' to 'HelloWorldApp13_1'
+- Create new folder 'app2', and initial a new dotnet console project 'HelloWorldApp13_2'
 
-- thingspro.edge.tag_v1 is TagHub Python SDK.
-
-##### 1.2 Add Class: backendProcess and assign initial variables
+##### 1.2 Copy TagSDK_Helper.cs and TagType.cs
 
 ```
-class backendProcess():
-    def __init__(self):
-        self.subscriber = tag.Subscriber()
-        self.publisher = tag.Publisher()
-        self.webAPIURL = 'http://127.0.0.1/api/v1'
-        self.headers = {}
-        self.headers["Content-Type"] = 'application/json'
+// Initial tag SDK 
+    public Publisher()
+    {
+        _tagClient = dx_tag_client_init("Publisher_app2");
+    }
 ```
 
-- We will use self.subscriber to subscribe Tag.
-- The backend process will leverage hello-world's Restful API to create virtual tags.
+- Copy these two files from 'HelloWorldApp12' to 'HelloWorldApp13_2', but adjust Publisher constructions by given a new name 'Publisher_app2'.
+- This adjustment is important to distinguish another Publisher object on 'HelloWorldApp13_1'.
 
 
 ##### 1.3 Create start() method
 
 ```
-def start(self):
-        # Waiting Web API
-        self.waitWebAPI()
-        
-        # Create virtual tags before subscribe them
-        self.createTag('virtual', 'hello-world', 'tag01', 'string')
-        self.createTag('virtual', 'hello-world', 'tag02', 'int32')
-        self.createTag('virtual', 'hello-world', 'tag03', 'int32')        
-        
-        # Subscribe virtual tags, and declare call back function        
-        self.subscriber.subscribe_callback(self.tagDataCallback)        
-        self.subscriber.subscribe('virtual', 'hello-world', ['tag01', 'tag02'])
-        
-        while True:
-            time.sleep(1)
+public void start()
+    {
+        // Waiting Web API
+        waitWebAPI();
+
+        // Create virtual tags before subscribe them
+        createTag("virtual","hello-world","tag01","string");
+        createTag("virtual","hello-world","tag02","int32");
+        createTag("virtual","hello-world","tag03","int32");
+
+        // Subscribe virtual tags, and declare call back function  
+        _subscriber = new Subscriber(tagDataCallback);
+        _subscriber.subscribe("virtual", "hello-world", "tag02");
+
+        while (true)
+            Thread.Sleep(1000);
+    }
 ```
 
-- We tell Tag Subscriber that we want to subscribe tag01 and tag02, and call we defined method, self.tagDataCallback, when data coming.
+- We tell Tag Subscriber that we want to subscribe tag02, and call we defined method, tagDataCallback, when data coming.
 
 - To prevent failure, we create virtual tags (via hello-world Restful API) again, including 3rd tag (tag03).
 
@@ -82,33 +79,49 @@ def start(self):
 ##### 1.4 Create tagDataCallback() method
 
 ```
-def tagDataCallback(self, data={}):
-        timestamp=int(time.time()*1000000)  
-        if data["tagName"] == 'tag02':
-            F = self.C_to_F(data['dataValue'])
-            tag03 = {
-                    'prvdName': 'virtual',
-                    'srcName': 'hello-world',
-                    'tagName': 'tag03',            
-                    'dataValue': int(F),
-                    'dataType': 'int32',
-                    'ts': timestamp        
-                }  
-            self.publisher.publish(tag03)
+public void tagDataCallback(Dictionary<string,object> tag)
+    {
+        var tagPath = tag["prvdName"] + "/" + tag["srcName"] + "/" + tag["tagName"];
+        var timeStamp = tag["timeStamp"];
+        var dataType = tag["dataType"];
+        var dataValue = new Object();
+        switch (dataType)
+        {
+            case "boolen":
+                dataValue = (bool)tag["dataValue"];
+                break;
+            ....
+            case "raw":
+                byte[] dataValueByte = (byte [])tag["dataValue"];
+                dataValue = BitConverter.ToString(dataValueByte);
+                break;            
+        }
+        if ((string)tag["tagName"] == "tag02") {
+            double F = C_to_F((Int32)dataValue);
+            Dictionary<string, object> tag03 = new Dictionary<string, object>();
+            tag03.Add("prvdName", "virtual");
+            tag03.Add("srcName", "hello-world");
+            tag03.Add("tagName", "tag03");
+            tag03.Add("dataType", "int32");
+            tag03.Add("dataValue", (Int32)F);
+            int rc1 = _publisher.publish(tag03);   
+
+            string tag01Value = "";
+            if (F >= 100)
+                tag01Value = "Over Heat";
+            else
+                tag01Value = "Normal";
             
-            if (F >= 100):     
-                tag01Value = 'Over Hit'
-            else:
-                tag01Value = 'Normal'                     
-            tag01 = {
-                'prvdName': 'virtual',
-                'srcName': 'hello-world',
-                'tagName': 'tag01',            
-                'dataValue': tag01Value,
-                'dataType': 'string',
-                'ts': timestamp        
-            }             
-            self.publisher.publish(tag01)
+            Dictionary<string, object> tag01 = new Dictionary<string, object>();
+            tag01.Add("prvdName", "virtual");
+            tag01.Add("srcName", "hello-world");
+            tag01.Add("tagName", "tag01");
+            tag01.Add("dataType", "string");
+            tag01.Add("dataValue", tag01Value);
+            int rc2 = _publisher.publish(tag01);     
+        }        
+        Console.WriteLine("tag: " + tagPath + ", dataValue: " + dataValue + "(" + dataType + "), ts: " + timeStamp);
+    }
 ```
 
 - We convert tag02 value (temperature) , from °*C* to °*F*   , and publish temperature °*F*   to tag03.
@@ -122,32 +135,34 @@ def tagDataCallback(self, data={}):
 #### 2.1 Download Hello World Application 1.3
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp13.tar
+$ wget https://tpe2.azureedge.net/dotnet-core-6/HelloWorldApp13.tar
 ```
 
-#### 2.2 ThingsPro Edge Application 1.2 Structure
+#### 2.2 ThingsPro Edge Application 1.3 Structure
 
-| Name               | Type   | Note                                        |
-| ------------------ | ------ | ------------------------------------------- |
-| Dockerfile         | File   | Updated for launch backend.py and web.py    |
-| app                | Folder | Add backend.py<br />Rename run.py to web.py |
-| docker-compose.yml | File   | Update version to 1.3                       |
-| metadata.yml       | File   | Update version to 1.3                       |
-| nginx.conf         | File   | Same with 1.0                               |
-| requirements.tx    | File   | Same with 1.2                               |
+| Name               | Type   | Note                                                         |
+| ------------------ | ------ | ------------------------------------------------------------ |
+| Dockerfile         | File   | Updated for launch HelloWorldApp13_1.dll and HelloWorldApp13_2.dll |
+| app1               | Folder | Same with 1.2, HelloWorldApp12                               |
+| app2               | Folder | Create new console app at backend to subscribe and handle tags |
+| docker-compose.yml | File   | Update version to 1.3                                        |
+| metadata.yml       | File   | Update version to 1.3                                        |
+| nginx.conf         | File   | Same with 1.0                                                |
+| run.sh             | File   | Docker container launch shell script                         |
 
 #### 2.3 Build ThingsPro Edge Applicaiton
 
 Follow pre-request step: <a href="Build%20and%20Run%20Hello%20World%20Application-dotnet.md">Build and Run "Hello World" Application</a>, to build hello-world application V1.3
 
 ```
--rwxrwxrwx 1 root root       861 Feb 12 14:07 Dockerfile
-drwxrwxrwx 2 root root      4096 Feb 12 15:12 app
--rwxrwxrwx 1 root root        56 Feb 12 16:54 docker-compose.yml
--rw-r--r-- 1 root root 136980480 Feb 13 02:06 hello-world_1.3_armhf.mpkg
--rwxrwxrwx 1 root root       107 Feb 12 16:54 metadata.yml
--rwxrwxrwx 1 root root       281 Feb 12 08:46 nginx.conf
--rwxrwxrwx 1 root root        73 Feb 12 13:07 requirements.txt
+drwxrwxrwx 5 root root      4096 Feb 26 10:55 app1
+drwxrwxrwx 5 root root      4096 Feb 26 13:08 app2
+-rwxrwxrwx 1 root root        78 Feb 26 13:30 docker-compose.yml
+-rwxrwxrwx 1 root root      2117 Feb 27 00:20 Dockerfile
+-rw-r--r-- 1 root root 133396480 Feb 27 00:32 hello-world_1.3_armhf.mpkg
+-rwxrwxrwx 1 root root       107 Feb 26 13:30 metadata.yml
+-rwxrwxrwx 1 root root       281 Feb 12 05:59 nginx.conf
+-rwxrwxrwx 1 root root        71 Feb 26 13:06 run.sh
 ```
 
 
