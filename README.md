@@ -51,4 +51,4 @@ Below table gives you ideas how to select suitable application development way t
 
 ## Azure IoT Edge Module
 1. Develop your "thingspro-agent" 
-2. <a href="documents/Develop%20Module%20on%20.Net%20Core%206%20%2B%20ARM32.md">Develop Module on .Net Core 6 + ARM32</a>
+2. <a href="documents/Develop%20Module%20on%20.Net%20Core%206%20%2B%20ARM32%20%2B%20Debian64.md">Develop Module on .Net Core 6 (ARM32, Debian64)</a>
