@@ -1,12 +1,12 @@
-# Develop Module on .Net Core 6 + ARM32
+# Develop Module on .Net Core 6 (ARM32, Debian64)
 
-Document Version: V1.0
+Document Version: V1.1
 
 ##### Change Log
 
-| Version | Date       | Content          |
-| ------- | ---------- | ---------------- |
-| 1.0     | 2022-02-16 | Document created |
+| Version | Date       | Content                        |
+| ------- | ---------- | ------------------------------ |
+| 1.1     | 2022-03-02 | Fixed steps<br />Add Debian 64 |
 
 
 
@@ -18,12 +18,12 @@ This document guide you how to develop, build and deploy an Azure IoT Module by 
 
 ### 1. Develop Environment
 
-| item                          | Note / Command                                               |
-| ----------------------------- | ------------------------------------------------------------ |
-| Linux OS                      | A x86 CPU virtual machine with Ubuntu Server 18.04 OS        |
-| Install Docker                | https://docs.docker.com/install/linux/docker-ce/ubuntu/      |
-| Install ARM32 emulator        | A tool to convert x86/x64 docker image to ARM CPU. <br />>apt-get update<br />>apt-get install -y qemu-user-static |
-| Install ThingsPro Develop Kit | A tool to pack docker image to be ThingsPro Edge Application. <br />>docker pull moxa2019/thingspro-app-builder:1.0 |
+| item                   | Note / Command                                               |
+| ---------------------- | ------------------------------------------------------------ |
+| Linux OS               | A x86 CPU virtual machine with Ubuntu Server 18.04 OS        |
+| Install Docker         | https://docs.docker.com/install/linux/docker-ce/ubuntu/      |
+| Install ARM32 emulator | A tool to convert x86/x64 docker image to ARM CPU. <br />>apt-get update<br />>apt-get install -y qemu-user-static |
+|                        |                                                              |
 
 
 
@@ -44,6 +44,7 @@ $ tar -xvf SampleModule.tar
 | Name                | Type | Note                                                         |
 | ------------------- | ---- | ------------------------------------------------------------ |
 | Dockerfile          | File | Build this application by .Net core 6 SDK<br />Generate arm32v7 docker image contains .Net core 6 runtim |
+| Dockerfile_x64      | File | Build this application by .Net core 6 SDK<br />Generate debian x64 docker image contains .Net core 6 runtim |
 | Program.cs          | File | Copy from https://github.com/Azure/dotnet-template-azure-iot-edge-module/blob/master/content/dotnet-template-azure-iot-edge-module/CSharp/Program.cs |
 | SampleModule.csproj | File | C# Project file                                              |
 
@@ -55,31 +56,11 @@ $ tar -xvf SampleModule.tar
 $ cd SampleModule
 ```
 
-##### 2.3.2 launch ThingsPro App Builder docker container
-
-Using below command to launch "ThingsPro Develop Kit", and entry "ThingsPro App Builder" shell
-
-```
-$ docker run --rm -it -v $(pwd):/app/ -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock moxa2019/thingspro-app-builder:1.0 bash
-```
-
-##### 2.3.3 change directory to "app" folder
-
-The "ThingsPro App Builder" will mount host's current folder at /app. 
-
-```
-$ cd /app
-```
-
-##### 2.3.4 build docker image with app name: <font color='green'><b>sample-module:1.0</b></font>
-
-At /app folder, build your docker image with application name and tag.
+##### 2.3.2 build docker image with app name: <font color='green'><b>sample-module:1.0</b></font>
 
 ```
 $ docker build -t sample-module:1.0 .
 ```
-
-Ignore all <font color='red'>mount: permission denied</font> message and all warning messages.
 
 #### 2.4 Push Docker image to public site
 
@@ -117,7 +98,7 @@ https://docs.microsoft.com/en-us/azure/iot-edge/how-to-provision-single-device-l
 
   - Image URI: moxa2019/sample-module:1.0
 
-  - Container Create Options
+  - Container Create Options (This configuration only required for arm32 cpu )
 
     ```
     {
@@ -138,13 +119,25 @@ https://docs.microsoft.com/en-us/azure/iot-edge/how-to-provision-single-device-l
   edgeHub          running          Up an hour       mcr.microsoft.com/azureiotedge-hub:1.1
   ```
 
-- Check Sample Module log
+- Check Sample Module log 
 
   ```
   root@Moxa:/home/moxa# iotedge logs SampleModule
   
   -- Logs begin at Wed 2022-02-16 22:47:23 CST. --
-  Feb 17 00:43:41 Moxa e9b2b018ac7b[675]: IoT Hub module client initialized. (.NET Core 6 + ARM32)
+  Feb 17 00:43:41 Moxa e9b2b018ac7b[675]: IoT Hub module client initialized. (.NET Core 6 + Moxa)
   ```
 
   
+
+- Check Sample Module log when ThingsPro Edge installed
+
+  ```
+  root@Moxa:/home/moxa# journalctl CONTAINER_NAME=SampleModule -f
+  
+  -- Logs begin at Wed 2022-03-02 18:45:55 CST. --
+  Mar 02 23:36:04 AIG501 ef1082c7e8bf[1905]: IoT Hub module client initialized. (.NET Core 6 + Moxa)
+  ```
+
+  
+

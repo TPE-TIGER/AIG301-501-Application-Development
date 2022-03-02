@@ -48,7 +48,7 @@ namespace SampleModule
             // Open a connection to the Edge runtime
             ModuleClient ioTHubModuleClient = await ModuleClient.CreateFromEnvironmentAsync(settings);
             await ioTHubModuleClient.OpenAsync();
-            Console.WriteLine("IoT Hub module client initialized. (.NET Core 6 + ARM32)");
+            Console.WriteLine("IoT Hub module client initialized. (.NET Core 6 + Moxa)");
 
             // Register callback to be called when a message is received by the module
             await ioTHubModuleClient.SetInputMessageHandlerAsync("input1", PipeMessage, ioTHubModuleClient);

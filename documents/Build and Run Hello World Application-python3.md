@@ -175,7 +175,7 @@ drwxrwxrwx 2 root root     4096 Feb 12 05:39 app
 Install it via App Manager
 
 ```
-$ appman app install helloworld_1_armhf.mpkg
+$ appman app install hello-world_1_armhf.mpkg
 
 {
   "data": {
