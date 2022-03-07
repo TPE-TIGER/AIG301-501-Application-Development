@@ -16,7 +16,7 @@ This document guides you how to implement an OPC UA client application, which su
 
 ### Usage
 
-- A Moxa IIoT Gateway running with ThingsPro Edge V2.2.0+
+- A Moxa IIoT Gateway running with ThingsPro Edge V2.2.1+
 - Download application
 
     - Binary : https://tpe2.azureedge.net/opc_ua_client_sample_1.0.0_armhf.mpkg
@@ -66,5 +66,5 @@ This document guides you how to implement an OPC UA client application, which su
 
     The tags can later be selected by cloud applications, to get the updated values published to various cloud services.
 
-### Known Issue
-The latest ThingsPro Edge SDK (tpfunc) does not run on Python 3.5. There is a known bug, which subscribe callback doesn't work on this version.
+### Notes
+The latest ThingsPro Edge SDK (tpfunc V1.2.3) requires Python 3.6+. The lower version will result in execution exception on your program. You can take reference according to this program Dockerfile, https://tpe2.azureedge.net/Python3/OPCUAClientSample.tar.gz 
