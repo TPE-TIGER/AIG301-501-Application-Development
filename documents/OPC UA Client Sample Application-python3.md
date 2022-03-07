@@ -36,7 +36,7 @@ This document guides you how to implement an OPC UA client application, which su
     |         NAME         |   VERSION    | STATE (DESIRED STATE) | HEALTH |
     +----------------------+--------------+-----------------------+--------+
     | ...                  | ...          | ...                   | ...    |
-    | opc_ua_client_sample |            1 | ready (ready)         | good   |
+    | opc_ua_client_sample |        1.0.0 | ready (ready)         | good   |
     +----------------------+--------------+-----------------------+--------+
   ```
 
