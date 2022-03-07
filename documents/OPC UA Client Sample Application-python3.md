@@ -19,8 +19,8 @@ This document guides you how to implement an OPC UA client application, which su
 - A Moxa IIoT Gateway running with ThingsPro Edge V2.2.0+
 - Download application
 
-    - Binary : 
-    - Source : 
+    - Binary : https://tpe2.azureedge.net/opc_ua_client_sample_1.0.0_armhf.mpkg
+    - Source : https://tpe2.azureedge.net/Python3/OPCUAClientSample.tar.gz
 
 - Install application via command console.
 
