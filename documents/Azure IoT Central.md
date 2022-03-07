@@ -29,7 +29,7 @@ This application demonstrates below features and possibility for your owned Thin
 - Download application
 
   - Binary : https://tpe2.azureedge.net/aic_1.2-650_armhf.mpkg
-  - Source : https://tpe2.azureedge.net/PAzureIoTCentral.tar
+  - Source : https://tpe2.azureedge.net/Python3/AzureIoTCentral.tar
 
 - Install application on Moxa IIoT Gateway Linux console by below command：
 
