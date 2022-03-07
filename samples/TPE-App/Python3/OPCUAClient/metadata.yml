@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: opc_ua_client_sample
+  displayname: OPC UA Client Sample App
+  version: 1.0.0
+  arch: armhf

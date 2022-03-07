@@ -1,0 +1,6 @@
+version: '2'
+services:
+  app:
+    image: opc_ua_client_sample:1.0.0
+    volumes:
+      - ${APPMAN_APPPATH}/setting:/app/cfg/
