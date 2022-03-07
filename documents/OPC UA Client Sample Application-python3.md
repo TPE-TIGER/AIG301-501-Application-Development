@@ -67,4 +67,4 @@ This document guides you how to implement an OPC UA client application, which su
     The tags can later be selected by cloud applications, to get the updated values published to various cloud services.
 
 ### Notes
-The latest ThingsPro Edge SDK (tpfunc V1.2.3) requires Python 3.6+. The lower version will result in execution exception on your program. You can take reference according to this program Dockerfile, https://tpe2.azureedge.net/Python3/OPCUAClientSample.tar.gz 
+The latest ThingsPro Edge SDK (tpfunc V1.2.3) requires Python 3.6+. The lower version of Python will result in execution exception on your program. You can take reference according to this program Dockerfile, https://tpe2.azureedge.net/Python3/OPCUAClientSample.tar.gz 
