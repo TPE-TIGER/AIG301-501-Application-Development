@@ -62,9 +62,9 @@ This document guides you how to implement an OPC UA client application, which su
 
 - Validate the result.
 
-Once the application starts running, it connects to the destination OPC UA server and subscribes the tags specified in the configuration file, then publishes the updated values to ThingsPro Edge. This can be validated by leveraging the tag management feature on ThinsPro Edge's web GUI.
+    Once the application starts running, it connects to the destination OPC UA server and subscribes the tags specified in the configuration file, then publishes the updated values to ThingsPro Edge. This can be validated by leveraging the tag management feature on ThinsPro Edge's web GUI.
 
-The tags can later be selected by cloud applications, to get the updated values published to cloud services.
+    The tags can later be selected by cloud applications, to get the updated values published to cloud services.
 
 ### Known Issue
 The latest ThingsPro Edge SDK (tpfunc) does not run on Python 3.5. There is a known bug which subscribe callback doesn't work on this version.
