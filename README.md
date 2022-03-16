@@ -35,7 +35,7 @@ Below table gives you ideas how to select suitable application development way t
 3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201-python3.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
 4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202-python3.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
 5. <a href="documents/Azure%20IoT%20Central.md">(Example) Azure IoT Central Demo Application</a>
-6. <a href="documents/OPC%20UA%20Client%20Sample%20Application-python3.md">((Example) OPC UA Client Application</a>
+6. <a href="documents/OPC%20UA%20Client%20Sample%20Application-python3.md">(Example) OPC UA Client Application</a>
 
 #### Dotnet Core C# Sample App
 1. <a href="documents/Build%20and%20Run%20Hello%20World%20Application-dotnet.md">Build and Run "Hello World" Application</a>
