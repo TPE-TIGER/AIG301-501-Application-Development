@@ -62,7 +62,8 @@ This application demonstrates below features and possibility for your owned Thin
 
   - Create an Azure IoT Central account
 
-  - Create an IoT Device Template, and import <a href="../samples/TPE-App/Python3/AzureIoTCentral/src/data/deviceTemplateV0.5.json">DTDL file</a>, which required by this demo application.
+  - Create an **IoT Device** Template, and import <a href="../samples/TPE-App/Python3/AzureIoTCentral/src/data/deviceTemplateV0.5.json">DTDL file</a>, which required by this demo application.
+    <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic03.jpg" style="zoom:67%;" />
 
   - Create an IoT Device, get it's connection meta data, and fill required data into demo application configuration form which show on above.
 
