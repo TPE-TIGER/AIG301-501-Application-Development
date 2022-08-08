@@ -1,0 +1,12 @@
+FROM python:3.7.11-slim-stretch
+
+COPY ./requirements.txt /app/
+COPY ./*.json /app/
+COPY ./*.py /app/
+
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+CMD ["python", "-u", "/app/module.py"]
+

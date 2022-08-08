@@ -1,0 +1,19 @@
+{
+    "Tags": [
+        {
+            "provider": "system",
+            "source": "status",
+            "tag": "cpuUsage"
+        },
+        {
+            "provider": "system",
+            "source": "network",
+            "tag": "lan1NetworkRx"
+        },
+        {
+            "provider": "system",
+            "source": "network",
+            "tag": "lan1NetworkTx"
+        }
+    ]
+}
