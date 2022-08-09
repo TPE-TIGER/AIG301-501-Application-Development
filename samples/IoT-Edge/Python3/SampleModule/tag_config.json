@@ -15,5 +15,6 @@
             "source": "network",
             "tag": "lan1NetworkTx"
         }
-    ]
+    ],
+    "Interval": 10
 }
