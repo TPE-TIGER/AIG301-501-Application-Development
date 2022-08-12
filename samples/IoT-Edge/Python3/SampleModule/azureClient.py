@@ -1,7 +1,8 @@
-import os, json, asyncio
+import json
 from azure.iot.device.aio import IoTHubModuleClient
 from azure.iot.device import MethodResponse, Message
-from tpeClient import tpeClient
+# import asyncio
+# from tpeClient import tpeClient
 
 class azureClient():
     azure_client = None
