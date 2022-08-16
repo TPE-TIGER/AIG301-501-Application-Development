@@ -172,50 +172,50 @@ https://docs.microsoft.com/en-us/azure/iot-edge/how-to-provision-single-device-l
     root@Moxa:/home/moxa# iotedge logs sample -f
     ```
 
-  - Module Twin
+- Module Twin
 
-    - Configure the device through desired twin.
+  - Configure the device through desired twin.
 
-      ```
-      "desired": {
-        "sshserver:" {
-          "enable": true,
-          "port": 22
-        }
+    ```
+    "desired": {
+      "sshserver:" {
+        "enable": true,
+        "port": 22
       }
-      ```
+    }
+    ```
 
-    - Get the latest device status from reported twin.
+  - Get the latest device status from reported twin.
 
-      ```
-      "reported": {
-        "sshserver:" {
-          "enable": true,
-          "port": 22
-        }
+    ```
+    "reported": {
+      "sshserver:" {
+        "enable": true,
+        "port": 22
       }
-      ```
+    }
+    ```
 
-  - Direct Method
+- Direct Method
 
-    - Method Name: `thingspro_api_v1`
-    - Payload:
-      This method allows us to invoke all the TPE APIs, please refer to https://thingspro-edge.moxa.online/latest/core/index.html
+  - Method Name: `thingspro_api_v1`
+  - Payload:
+    This method allows us to invoke all the TPE APIs, please refer to https://thingspro-edge.moxa.online/latest/core/index.html
 
-      ```
-      {
-        "method": "put",
-        "path": "/system/sshserver",
-        "request_body": {
-          "enable": true
-        }
+    ```
+    {
+      "method": "put",
+      "path": "/system/sshserver",
+      "request_body": {
+        "enable": true
       }
-      ```
+    }
+    ```
 
-  - Device to Cloud Message
+- Device to Cloud Message
 
-    Once valid tags are specified in tag_config.json, the module sends out messages to edgeHub whenever new tag values are published. edgeHub routes the message to IoT Hub if the message routing is properly set.
+  Once valid tags are specified in tag_config.json, the module sends out messages to edgeHub whenever new tag values are published. edgeHub routes the message to IoT Hub if the message routing is properly set.
 
-  - Cloud to Device Message
+- Cloud to Device Message
 
-    The module acceps messages from edgeHub. We will have to set the message routing in order to tell edgeHub to route messages to our module.
+  The module acceps messages from edgeHub. We will have to set the message routing in order to tell edgeHub to route messages to our module.
