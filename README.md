@@ -43,6 +43,9 @@ Below table gives you ideas how to select suitable application development way t
 3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201-dotnet.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
 4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202-dotnet.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
 
+#### C Sample App
+1. <a href="documents/Develop%20Our%20Own%20ThingsPro%20Edge%20Application%20in%20C.md">Develop Our Own "thingspro-agent" Module</a>
+
 ## tpFunc Function
 1. <a href="https://github.com/TPE-TIGER/tpe-function-sdk">What is tpFunc and tpFunc funciton</a>
 2. <a href="documents/Scheduled%20Operation%20Task%201.md">(Example) Scheduled Operation Task 1</a> (by confg)
