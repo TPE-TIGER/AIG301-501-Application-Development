@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: hello
+  displayname: Hello App
+  version: 1.0.0
+  arch: armhf

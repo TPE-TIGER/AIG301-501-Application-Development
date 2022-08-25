@@ -1,6 +1,6 @@
 # Develop Our Own "thingspro-agent" Module
 
-Document Version: V1.1
+Document Version: V1.0
 
 ##### Change Log
 
@@ -23,7 +23,6 @@ This document guide you how to develop, build and deploy a "thingspro-agent"-lik
 | Linux OS               | A x86 CPU virtual machine with Ubuntu Server 18.04 OS        |
 | Install Docker         | https://docs.docker.com/install/linux/docker-ce/ubuntu/      |
 | Install ARM32 emulator | A tool to convert x86/x64 docker image to ARM CPU. <br />>apt-get update<br />>apt-get install -y qemu-user-static |
-|                        |                                                              |
 
 ------
 
@@ -57,7 +56,7 @@ $ tar -xvf SampleModule.tar
 $ cd SampleModule
 ```
 
-##### 2.3.2 build docker image with app name: <font color='green'><b>sample_module:1.0.0-`<ARCH>`</b></font>
+##### 2.3.2 build docker image with image name: <font color='green'><b>sample_module:1.0.0-`<ARCH>`</b></font>
 
 ```
 $ docker build . -f Dockerfile.<ARCH> -t <DOCKER_HUB_USERNAME>/sample_module:1.0.0-<ARCH>
