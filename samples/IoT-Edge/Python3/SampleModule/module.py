@@ -23,7 +23,7 @@ async def run():
     # Do whatever needed in the loop
     global stop_event
     while not stop_event.is_set():
-        await asyncio.sleep(1000)
+        await asyncio.sleep(1)
 
 def tag_callback(data={}):
     # print(data)
