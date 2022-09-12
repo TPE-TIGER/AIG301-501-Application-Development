@@ -33,7 +33,7 @@ class azureClient():
 
     # define behavior for handling method calls
     async def method_handler(self, method_request):
-        print('[Direct Method Received]\nMethod Name = {0}\nPayload = (1)'.format(method_request.name, method_request.payload))
+        print('[Direct Method Received]\nMethod Name = {0}\nPayload = {1}'.format(method_request.name, method_request.payload))
 
         # Sample command name: thingspro_api_v1
         # Sample payload:
