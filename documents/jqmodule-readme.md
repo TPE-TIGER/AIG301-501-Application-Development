@@ -109,8 +109,8 @@ jqmodule 是一個運行於 Azure IoT Edge 上的 module，主要目的在於透
 
        | ThingsPro Edge Version | edgeAgent / edgeHub version |
        | ---------------------- | --------------------------- |
-       | ThingsPro Edge 2.2.0   | 1.10.*                      |
-       | ThingsPro Edge 2.2.1   | 1.11.4                      |
+       | ThingsPro Edge 2.2.0   | 1.0.9                      |
+       | ThingsPro Edge 2.2.1   | 1.1.4                      |
        | ThingsPro Edge 2.3.0+  | 1.2                         |
 
    - Azure IoT Explorer 收不到 message
