@@ -55,3 +55,4 @@ Below table gives you ideas how to select suitable application development way t
 ## Azure IoT Edge Module
 1. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module.md">Develop Our Own "thingspro-agent" Module</a>
 2. <a href="documents/Develop%20Module%20on%20.Net%20Core%206%20%2B%20ARM32%20%2B%20Debian64.md">Develop Module on .Net Core 6 (ARM32, Debian64)</a>
+3. <a href="documents/jqmodule-readme-Eng.md">jq Module Readme</a>
