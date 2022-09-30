@@ -1,0 +1,5 @@
+azure-iot-device==2.11.0
+cryptography==37.0.4
+azure-storage-blob==12.13.1
+requests==2.28.1
+tpfunc==1.2.3
