@@ -1,12 +1,12 @@
 # jq_module Readme
 
-Document Version: V1.1
+Document Version: V1.2
 
 ##### Change Log
 
 | Version | Date       | Content                                                 |
 | ------- | ---------- | ------------------------------------------------------- |
-| 1.1     | 2022-09-28 | 1. Add Direct Method. <br />2. Upgrade jq_module to 1.1 |
+| 1.2     | 2022-10-04 | 1. Add Direct Method. <br />2. Upgrade jq_module to 1.2 |
 
 This document describes how to use jq_module to transfer input message to output.
 
@@ -50,7 +50,7 @@ You can install jq_module by Azure Marketplace.
 Same with other Azure IoT Edge module installation steps, you can manual install jq_module from Azure IoT Hub.
 
 - name: jq_module
-- image URI: moxa2019/jqmodule:1.1
+- image URI: moxa2019/jq_module:1.2
 
 #### 2. Configuration
 
