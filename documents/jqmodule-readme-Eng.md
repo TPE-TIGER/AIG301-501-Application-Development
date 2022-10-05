@@ -43,7 +43,7 @@ About Azure IoT Edge message routing, please refer to:
 
 ##### 1.1 By Azure Marketplace
 
-You can install jq_module by Azure Marketplace.
+You can install jq_module by <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/moxainc1663310814431.jq_module?tab=Overview">Azure Marketplace</a>.
 
 ##### 1.2 By Manual on Azure IoT Hub
 
