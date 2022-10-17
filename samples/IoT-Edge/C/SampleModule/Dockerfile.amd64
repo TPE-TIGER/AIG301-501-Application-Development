@@ -1,0 +1,33 @@
+#-------------------------------------------------------------------------------------------
+# build stage
+#-------------------------------------------------------------------------------------------
+FROM debian:stretch-slim as build
+COPY . /app/
+WORKDIR /app
+
+RUN apt update \
+    && apt install -y git cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev ca-certificates \
+    && git clone https://github.com/Azure/azure-iot-sdk-c.git \
+    && cd azure-iot-sdk-c \
+    && git checkout -b LTS_07_2022_Ref01 \
+    && git submodule update --init \
+    && mkdir cmake \
+    && cd cmake \
+    && cmake -Duse_edge_modules=ON -Duse_prov_client=ON .. \
+    && cmake --build .
+    
+RUN ./build.sh
+
+#-------------------------------------------------------------------------------------------
+# target stage  
+#-------------------------------------------------------------------------------------------
+FROM debian:stretch-slim
+COPY --from=build /app/out /app/
+WORKDIR /app
+
+RUN apt update \    
+    && apt install -y curl libssl1.1 \
+    && apt autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+CMD ["./out"]
