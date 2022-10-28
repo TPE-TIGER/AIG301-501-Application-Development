@@ -56,4 +56,5 @@ Below table gives you ideas how to select suitable application development way t
 1. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module%20in%20Python3.md">Develop Our Own "thingspro-agent" Module in Python3</a>
 2. <a href="documents/Develop%20Module%20on%20.Net%20Core%206%20%2B%20ARM32%20%2B%20Debian64.md">Develop Module on .Net Core 6 (ARM32, Debian64)</a>
 3. <a href="documents/jqmodule-readme-Eng.md">jq Module Readme</a>
-1. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module%20in%20C.md">Develop Our Own "thingspro-agent" Module in C</a>
+4. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module%20in%20C.md">Develop Our Own "thingspro-agent" Module in C</a>
+5. <a href="documents/Leveraging%20TPM%20in%20IoT%20Edge%20Module.md">Leveraging TPM in IoT Edge Module</a>

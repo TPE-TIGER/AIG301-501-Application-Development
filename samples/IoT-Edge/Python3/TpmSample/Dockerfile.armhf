@@ -1,0 +1,35 @@
+#-------------------------------------------------------------------------------------------
+# qemu
+#-------------------------------------------------------------------------------------------
+FROM debian:stretch-slim as qemu
+RUN apt update && apt install -y qemu-user-static
+
+#-------------------------------------------------------------------------------------------
+# build stage
+#-------------------------------------------------------------------------------------------
+FROM arm32v7/python:3.7.11-slim-stretch as build
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
+
+RUN apt update \    
+    && apt install -y libkeyutils1 libidn11 \
+    && apt autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+#-------------------------------------------------------------------------------------------
+# target stage
+#-------------------------------------------------------------------------------------------
+FROM arm32v7/python:3.7.11-slim-stretch
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
+COPY --from=build /lib/arm-linux-gnueabihf/libkeyutils* /lib/arm-linux-gnueabihf/
+COPY --from=build /lib/arm-linux-gnueabihf/libidn* /lib/arm-linux-gnueabihf/
+
+COPY ./requirements.txt /app/
+COPY ./*.py /app/
+COPY ./templates/*.html /app/templates/
+
+WORKDIR /app
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+CMD ["python", "-u", "web.py"]

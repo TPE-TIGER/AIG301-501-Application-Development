@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            color: red
+        }
+
+        div {
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">Login</h1>
+
+    {% if error %}
+        <h3 class="error"><strong>Error:</strong> {{ error }} </h3>
+    {% endif %}
+
+    {% if data %}
+        <center>
+            <table>
+                <tr><th>Existing Users</th></tr>
+                {% for user in data %}
+                    <tr><td>{{user}}</td></tr>
+                {% endfor %}
+            </table>
+        </center>
+    {% endif %}
+
+    <div>
+        <form>
+            <button formaction="/manage" formmethod="get">Manage Accounts</button>
+        </form>
+    </div>
+
+    <br></br>
+
+    <form>
+        <div>
+            <input type="text" name="username" placeholder="UserName" autofocus="">
+        </div>
+
+        <div>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+
+        <div>
+            <form>
+                <button formaction='/login' formmethod="post">Login</button>
+            </form>
+        </div>
+    </form>
+</body>
+
+</html>

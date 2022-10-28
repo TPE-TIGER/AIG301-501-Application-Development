@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            color: red
+        }
+
+        div {
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">Create New Account</h1>
+
+    {% if data %}
+        <center>
+            <table>
+                <tr><th>Existing Users</th></tr>
+                {% for user in data %}
+                    <tr><td>{{user}}</td></tr>
+                {% endfor %}
+            </table>
+        </center>
+    {% endif %}
+
+    <br></br>
+
+    <form>
+        <div>
+            <input type="text" name="username" placeholder="UserName" autofocus="">
+        </div>
+
+        <div>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+
+        <div>
+            <form>
+                <button formaction="/manage" formmethod="post">Create</button>
+                <button formaction="/delete" formmethod="post">Delete</button>
+            </form>
+        </div>
+    </form>
+</body>
+
+</html>
