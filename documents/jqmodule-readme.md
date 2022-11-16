@@ -2,14 +2,6 @@
 
 Document Version: V1.2
 
-##### Change Log
-
-| Version | Date       | Content                                                |
-| ------- | ---------- | ------------------------------------------------------ |
-| 1.2     | 2022-11-16 | Add '-t' on docker build command |
-| ------- | ---------- | ------------------------------------------------------ |
-| 1.1     | 2022-09-28 | 1. Add Direct Method. <br />2. Upgrade jqmodule to 1.1 |
-
 本文件說明如何使用 jqmodule 於 AIG-301 設備，以及如何修改、打包 jqmodule。
 
 ### 說明
