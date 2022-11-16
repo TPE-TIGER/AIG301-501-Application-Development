@@ -1,10 +1,12 @@
 # jqmodule
 
-Document Version: V1.1
+Document Version: V1.2
 
 ##### Change Log
 
 | Version | Date       | Content                                                |
+| ------- | ---------- | ------------------------------------------------------ |
+| 1.2     | 2022-11-16 | Add '-t' on docker build command |
 | ------- | ---------- | ------------------------------------------------------ |
 | 1.1     | 2022-09-28 | 1. Add Direct Method. <br />2. Upgrade jqmodule to 1.1 |
 
@@ -189,7 +191,7 @@ Basically, you just need to change code at azureClient.py to fit your extra requ
 On Ubuntu Server 18.04 (x86) development envrionment, build docker image by command:
 
 ```
-$ docker build {my_docker_hub}/{my_jqmodule}:{my_version} .
+$ docker build -t {my_docker_hub}/{my_jqmodule}:{my_version} .
 ```
 
 You shall change **{value}** by your valid data.
