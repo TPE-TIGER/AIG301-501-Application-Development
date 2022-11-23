@@ -51,6 +51,7 @@ Below table gives you ideas how to select suitable application development way t
 2. <a href="documents/Scheduled%20Operation%20Task%201.md">(Example) Scheduled Operation Task 1</a> (by confg)
 3. <a href="documents/Scheduled%20Operation%20Task%202.md">(Example) Scheduled Operation Task 2</a> (by code)
 4. <a href="documents/Enable%20onChange%20Feature%20on%20TagHub.md">(Example) Enable onChange Feature on TagHub</a> 
+5. <a href="documents//Import%20Modbus%20Config%20by%20Azure%20IoT%20Hub%20Direct%20Method.md">(Example) Import Modbus Configuration File by Azure IoT Hub Direct Method</a>
 
 ## Azure IoT Edge Module
 1. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module%20in%20Python3.md">Develop Our Own "thingspro-agent" Module in Python3</a>
