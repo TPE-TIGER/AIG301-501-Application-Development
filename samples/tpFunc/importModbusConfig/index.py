@@ -72,7 +72,7 @@ def modbus_import(resource, headers, message):
         output["status"] = "sucess"
     else:
         output["status"] = "fail"
-    output["step"] = "3/3. apply Modbus Master configuraiton"
+    output["step"] = "3/3. apply Modbus Master configuraton"
     output["content"] = content.decode("utf-8")
     return http.Response(code=200, data=output)
 
