@@ -1,4 +1,4 @@
-# Leveraging TPM in IoT EdgeModule
+# Leveraging DIO in IoT EdgeModule
 
 Document Version: V1.0
 
@@ -12,7 +12,7 @@ Document Version: V1.0
 
 ### Purpose
 
-This document guide you how to develop, build and deploy an Azure IoT Module with Python 3, which leverages TPM's capability to protect its sensitive information.
+This document guide you how to develop, build and deploy an Azure IoT Module with Python 3, which is able to leverage the DI/DO port on a moxa unit.
 
 ------
 
@@ -120,7 +120,7 @@ https://docs.microsoft.com/en-us/azure/iot-edge/how-to-provision-single-device-l
 
     - IoT Edge Module Name: sample
 
-    - Image URI: <DOCKER_HUB_USERNAME>/tpm_sample_module:1.0.0-armhf
+    - Image URI: <DOCKER_HUB_USERNAME>/dio_sample_module:1.0.0-armhf
 
     - Container Create Options
 
