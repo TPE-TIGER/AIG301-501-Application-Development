@@ -1,0 +1,39 @@
+#-------------------------------------------------------------------------------------------
+# qemu
+#-------------------------------------------------------------------------------------------
+FROM debian:stretch-slim as qemu
+RUN apt update && apt install -y qemu-user-static
+
+#-------------------------------------------------------------------------------------------
+# build stage
+#-------------------------------------------------------------------------------------------
+FROM arm32v7/python:3.7.11-slim-stretch as build
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
+
+RUN apt update && \
+    apt install -y wget && \
+    wget https://debian.moxa.com/debian/pool/main/m/moxa-archive-keyring/moxa-archive-keyring_2019.4.26%2Bdeb9_all.deb && \
+    dpkg -i moxa-archive-keyring_2019.4.26+deb9_all.deb && \
+    echo "\ndeb mirror://debian.moxa.com/debian/mirrors stretch main contrib non-free" >> /etc/apt/sources.list && \
+    apt update && \
+    apt install -y moxa-dio-control
+
+#-------------------------------------------------------------------------------------------
+# target stage
+#-------------------------------------------------------------------------------------------
+FROM arm32v7/python:3.7.11-slim-stretch
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
+COPY --from=build /usr/lib/arm-linux-gnueabihf/libmx_dio_ctl.so* /usr/lib/arm-linux-gnueabihf/
+COPY --from=build /usr/lib/arm-linux-gnueabihf/libmx_gpio_ctl.so* /usr/lib/arm-linux-gnueabihf/
+COPY --from=build /lib/arm-linux-gnueabihf/libjson-c.so* /lib/arm-linux-gnueabihf/
+COPY --from=build /sbin/mx-dio-ctl /sbin
+COPY ./requirements.txt /app/
+COPY ./*.py /app/
+
+WORKDIR /app
+
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    rm requirements.txt
+
+CMD ["python", "-u", "web.py"]
