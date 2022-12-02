@@ -1,0 +1,7 @@
+version: '2'
+services:
+  app:
+    image: ftp-to-s3:1.0.0-armhf
+    volumes:
+      - ${APPMAN_APPPATH}:/app/cfg
+

@@ -1,0 +1,1 @@
+*/15 * * * * /usr/local/bin/python -u /app/run.py

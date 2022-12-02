@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: ftp-to-s3
+  displayname: FTP to S3 Sample App
+  version: 1.0.0
+  arch: armhf

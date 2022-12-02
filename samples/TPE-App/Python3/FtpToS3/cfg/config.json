@@ -1,0 +1,17 @@
+{
+  "aws": {
+    "key": "<MY_SECRET_ACCESS_KEY>",
+    "key_id": "<MY_ACCESS_KEY_ID>",
+    "s3_bucket": "<MY_S3_BUCKET_NAME>"
+  },
+  "file": {
+    "cache": "<LOCAL_CACHED_FILENAME>",
+    "destination": "<S3_FILENAME>",
+    "source": "<FTP_FILENAME>"
+  },
+  "ftp": {
+    "ip": "<FTP_SERVER_IP>",
+    "password": "<FTP_PASSWORD>",
+    "username": "<FTP_USERNAME>"
+  }
+}
