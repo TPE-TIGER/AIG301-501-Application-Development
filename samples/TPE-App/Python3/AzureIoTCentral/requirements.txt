@@ -1,3 +1,4 @@
 azure-iot-device~=2.0.0
 requests==2.21.0
 tpfunc
+flask

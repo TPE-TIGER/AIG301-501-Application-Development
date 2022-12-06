@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: aic
+  displayname: IoT Central Demo
+  version: 2.0-160
+  arch: amd64
