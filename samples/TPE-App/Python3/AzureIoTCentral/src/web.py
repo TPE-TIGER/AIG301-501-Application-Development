@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from azure.iot.device.iothub.pipeline import config
-from flask import Flask, render_template, request, Response, send_file
-import io, os, json, time, socket, os.path
+from flask import Flask, render_template, request
+import os, json, time, socket, os.path
 
 app = Flask(__name__)
 
@@ -51,7 +50,13 @@ def api_put_config():
         deviceKey = request.files['deviceKey']
         keyFile = _CONFIG_PATH + deviceKey.filename
         deviceKey.save(keyFile)
-        data['certificate']['key_file'] = deviceKey.filename        
+        data['certificate']['key_file'] = deviceKey.filename  
+    
+    if 'telemetryMapFile' in request.files:
+        telemetryMapFile = request.files['telemetryMapFile']
+        fileName = _CONFIG_PATH + telemetryMapFile.filename
+        telemetryMapFile.save(fileName)
+        data['deviceModel']['telemetry_map_file'] = telemetryMapFile.filename      
 
     with open(_CONFIG_FILE, 'w') as outfile:
         json.dump(data, outfile)
@@ -62,27 +67,15 @@ def api_put_config():
 
 #put /api/v1/aic/control/start
 @app.route('/api/v1/aic/control/start', methods=['PUT'])
-def api_put_control_start():  
-    global _CONFIG_json
-    global _CONFIG_FILE  
-    command = 'start'
-    _CONFIG_json["enable"] = True
-    with open(_CONFIG_FILE, 'w') as outfile:
-        json.dump(_CONFIG_json, outfile)
-
+def api_put_control_start(): 
+    command = 'put start'
     data = forward_to_daemon(command)    
     return get_aic_status()
 
 #put /api/v1/aic/control/stop
 @app.route('/api/v1/aic/control/stop', methods=['PUT'])
-def api_put_control_stop():  
-    global _CONFIG_json
-    global _CONFIG_FILE    
-    command = 'stop'
-    _CONFIG_json["enable"] = False
-    with open(_CONFIG_FILE, 'w') as outfile:
-        json.dump(_CONFIG_json, outfile)
-
+def api_put_control_stop():
+    command = 'put stop'
     data = forward_to_daemon(command)    
     return get_aic_status()
 
@@ -103,9 +96,9 @@ def load_config():
             initConfig = {}
             provision = {}
             certificate = {}
+            deviceModel = {}
 
             initConfig["enable"] = False
-            initConfig["pnpModelId"] = "dtmi:com:moxa:TPE;1"
 
             provision["dps_host"] = "global.azure-devices-provisioning.net"
             provision["id_scope"] = ""
@@ -117,7 +110,10 @@ def load_config():
             certificate["cert_file"]  = ""
             certificate["key_file"]  = ""
             certificate["trusted_cert"]  = ""
-            initConfig["certificate"] = certificate
+            initConfig["certificate"] = certificate            
+            
+            deviceModel["telemetry_map_file"] = ""
+            initConfig["deviceModel"] = deviceModel
             json.dump(initConfig, outfile)
 
     with open(_CONFIG_FILE) as f:
@@ -125,7 +121,7 @@ def load_config():
         print("===  Load Config Data ====")
 
 def get_aic_status():     
-    command = 'status'
+    command = 'get status'
     aicStatus = forward_to_daemon(command) 
     if aicStatus == "Exception on Daemon":
         aicStatus = {}

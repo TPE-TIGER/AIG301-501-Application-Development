@@ -73,6 +73,14 @@
 						<td><input type="file" id="deviceKey" name="deviceKey"></td>
 					</tr>
 				</table>
+
+                <table id="DTDL" border="0">	
+					<tr>
+						<td>Telemetry Map File：</td>
+						<td><div id="currentTelemetryMap"></div></td>
+						<td><input type="file" id="telemetryMapFile" name="telemetryMapFile"></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div>
@@ -104,13 +112,14 @@
 		$('#registrationId-2').val(_configJSONObj.provision.registration_id);
 		$('#currentDeviceCert').html(_configJSONObj.certificate.cert_file);
 		$('#currentDeviceKey').html(_configJSONObj.certificate.key_file);
+		$('#currentTelemetryMap').html(_configJSONObj.deviceModel.telemetry_map_file);
 	}
 
 	function updateAICStatus() {
 		var connectionTime = new Date(_aicConnectionStatus.connectionTS * 1000);
 		$('#aic_connection_status').html(_aicConnectionStatus.connectionStatus);
 		$('#aicStatusUpdatedAt').html('updated : ' + connectionTime)
-		if (_aicConnectionStatus.connectionStatus == "Connected") {
+		if (_aicConnectionStatus.connectionStatus == "connected") {
 			$('#aic_start_button').hide();
 			$('#aic_stop_button').show();
 		} else {
@@ -130,6 +139,11 @@
     });
 
 	$('#configSaveButton').click(function () {  
+        if ($("#telemetryMapFile").val().length <= 0) {
+            alert("Please upload Telemetry Map File")
+            return;
+        }
+
 		var configData = {}
 		var provision = {}
 		provision["id_scope"] = $('#idScope').val();
@@ -148,6 +162,8 @@
 		if ($("#deviceKey").val().length > 0) {
             postData.append('deviceKey', $('#deviceKey')[0].files[0]);
         }
+
+        postData.append('telemetryMapFile', $('#telemetryMapFile')[0].files[0]);
 
         $.ajax({
             type: "PUT",
