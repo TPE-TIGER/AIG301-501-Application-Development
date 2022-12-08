@@ -227,10 +227,10 @@ https://docs.microsoft.com/en-us/azure/iot-edge/how-to-provision-single-device-l
 
             | Function Name         | Payload                       | Result                                                |
             | --------------------- |------------------------------ | ----------------------------------------------------- |
-            | encrypt               | {"data": "<MY_PLAINTEXT>"}    | {"status":200,"payload":{"result":"<CIPHERTEXT>"}}    |
+            | encrypt               | {"data": "<MY_PLAINTEXT>"}    | {"status":200,"payload":{"result":"<MY_CIPHERTEXT>"}}    |
 
         - Decrypt
 
             | Function Name         | Payload                       | Result                                                |
             | --------------------- |------------------------------ | ----------------------------------------------------- |
-            | decrypt               | {"data": "<MY_CIPHERTEXT>"}   | {"status":200,"payload":{"result":"<PLAINTEXR>"}}     |
+            | decrypt               | {"data": "<MY_CIPHERTEXT>"}   | {"status":200,"payload":{"result":"<MY_PLAINTEXR>"}}     |
