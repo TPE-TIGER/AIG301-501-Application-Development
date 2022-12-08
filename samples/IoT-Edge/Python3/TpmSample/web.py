@@ -7,6 +7,10 @@ credential_path = './data/credentials'
 tpm_helper = None
 credentials = None
 
+def run():
+    init()
+    app.run(host='0.0.0.0', port=443, debug=True, use_reloader=False)
+
 def init():
     global tpm_helper
     os.makedirs('./data', exist_ok = True)
@@ -17,7 +21,7 @@ def load_credentials():
     global credential_path, credentials
     credentials = {}
     if os.path.exists(credential_path):
-        credentials_string = tpm_helper.decrypt('', credential_path, False)
+        credentials_string = tpm_helper.decrypt('', credential_path, False, True)
         if credentials_string:
             credentials = json.loads(credentials_string)
 
@@ -49,7 +53,7 @@ def manage():
             return render_template('login.html', error=error, data=list(credentials.keys()))
         else:
             credentials[request.form['username']] = request.form['password']
-            tpm_helper.encrypt(credential_path, json.dumps(credentials), False)
+            tpm_helper.encrypt(credential_path, json.dumps(credentials), False, True)
             return redirect(url_for('login'))
 
 @app.route('/delete', methods=['POST'])
@@ -57,7 +61,7 @@ def delete():
     global credential_path, credentials, tpm_helper
     print('DELETE - ' + str(request.form))
     credentials.pop(request.form['username'], False)
-    tpm_helper.encrypt(credential_path, json.dumps(credentials), False)
+    tpm_helper.encrypt(credential_path, json.dumps(credentials), False, True)
     return redirect(url_for('login'))
 
 @app.route('/home', methods=['GET'])
@@ -65,5 +69,5 @@ def home():
     return render_template('home.html')
 
 if __name__ == '__main__':
-    init()
-    app.run(host='0.0.0.0', port=443, debug=True)
+    run()
+

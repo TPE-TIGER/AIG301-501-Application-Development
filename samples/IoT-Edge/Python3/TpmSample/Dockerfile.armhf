@@ -10,10 +10,10 @@ RUN apt update && apt install -y qemu-user-static
 FROM arm32v7/python:3.7.11-slim-stretch as build
 COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin
 
-RUN apt update \    
-    && apt install -y libkeyutils1 libidn11 \
-    && apt autoremove -y \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt update && \    
+    apt install -y libkeyutils1 libidn11 && \
+    apt autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 #-------------------------------------------------------------------------------------------
 # target stage
@@ -25,11 +25,14 @@ COPY --from=build /lib/arm-linux-gnueabihf/libidn* /lib/arm-linux-gnueabihf/
 
 COPY ./requirements.txt /app/
 COPY ./*.py /app/
+COPY ./run.sh /app/run.sh
 COPY ./templates/*.html /app/templates/
 
 WORKDIR /app
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip cache purge && \
+    rm requirements.txt
 
-CMD ["python", "-u", "web.py"]
+CMD ["/app/run.sh"]

@@ -177,46 +177,60 @@ https://docs.microsoft.com/en-us/azure/iot-edge/how-to-provision-single-device-l
 
 - Encrypt Sensitive Data
 
-    The goal of this sample module is to demonstrate a way of having secrets saved locally, without having to worry about the secrets being leaked by copying the files to another unit that also has TPM integrated. This sample module allows user to create login credentials from web GUI, the credentials will be encryped by TPM and saved locally in the file `/app/data/credentials` inside the module container instance.
+    1. The main goal of this sample module is to demonstrate a way of having secrets saved locally, without having to worry about the secrets being leaked by copying and the files to another unit and get decrypted from there, even if that unit also has TPM integrated. This sample module allows user to create login credentials from web GUI, the credentials will be encryped by TPM and saved locally in the file `/app/data/credentials` inside the module container instance.
 
-    - Access the login web page (http://<MY_IP>:50000)
+        - Access the login web page (http://<MY_IP>:50000)
 
-    - Click the "Manage Accounts" button to add new users
+        - Click the "Manage Accounts" button to add new users
 
-    - Once users are added, we can view the content of `/app/data/credentials` with the following command. It is expected that the file content is not human-readable.
-
-        ```
-        root@Moxa:/home/moxa# docker exec -it sample cat /app/data/credentials
-        ```
-
-    - Validate that the credentials can be restored by the module by restarting the module and accessing http://<My_IP>:50000 after the module finishes its initialization (~1 minute).
-
-        ```
-        root@Moxa:/home/moxa# iotedge restart sample
-        ```
-
-    - Validate that the file cannot be loaded by another unit.
-
-        - Copy `/app/data/credentials`, `/app/child.pub` `/app/child.priv` from the module.
-    
-            ```
-            root@Moxa:/home/moxa# docker cp sample:/app/data/credentials .
-            root@Moxa:/home/moxa# docker cp sample:/app/child.pub .
-            root@Moxa:/home/moxa# docker cp sample:/app/child.priv .
-            ```
-
-        - Transfer the files to another unit.
+        - Once users are added, we can view the content of `/app/data/credentials` with the following command. It is expected that the file content is not human-readable.
 
             ```
-            root@Moxa:/home/moxa# scp ./child.p* ./credentials moxa@<MY_IP_DEV_2>:/tmp
+            root@Moxa:/home/moxa# docker exec -it sample cat /app/data/credentials
             ```
 
-        - Replace the files with the copied files and restart the sample module.
+        - Validate that the credentials can be restored by the module by restarting the module and accessing http://<My_IP>:50000 after the module finishes its initialization (~1 minute).
 
             ```
-            root@Moxa:/tmp# docker cp ./credentials sample:/app/data/credentials
-            root@Moxa:/tmp# docker cp ./child.pub sample:/app/child.pub
-            root@Moxa:/tmp# docker cp ./child.priv sample:/app/child.priv
-
-            root@Moxa:/tmp# iotedge restart sample
+            root@Moxa:/home/moxa# iotedge restart sample
             ```
+
+        - Validate that the file cannot be loaded by another unit.
+
+            - Copy `/app/data/credentials`, `/app/child.pub` `/app/child.priv` from the module.
+        
+                ```
+                root@Moxa:/home/moxa# docker cp sample:/app/data/credentials .
+                root@Moxa:/home/moxa# docker cp sample:/app/child.pub .
+                root@Moxa:/home/moxa# docker cp sample:/app/child.priv .
+                ```
+
+            - Transfer the files to another unit.
+
+                ```
+                root@Moxa:/home/moxa# scp ./child.p* ./credentials moxa@<MY_IP_DEV_2>:/tmp
+                ```
+
+            - Replace the files with the copied files and restart the sample module.
+
+                ```
+                root@Moxa:/tmp# docker cp ./credentials sample:/app/data/credentials
+                root@Moxa:/tmp# docker cp ./child.pub sample:/app/child.pub
+                root@Moxa:/tmp# docker cp ./child.priv sample:/app/child.priv
+
+                root@Moxa:/tmp# iotedge restart sample
+                ```
+
+    2. This IoT Edge module also allows users to encrypt/decrypt user-defined string via direct method calls.
+
+        - Encrypt
+
+            | Function Name         | Payload                       | Result                                                |
+            | --------------------- |------------------------------ | ----------------------------------------------------- |
+            | encrypt               | {"data": "<MY_PLAINTEXT>"}    | {"status":200,"payload":{"result":"<CIPHERTEXT>"}}    |
+
+        - Decrypt
+
+            | Function Name         | Payload                       | Result                                                |
+            | --------------------- |------------------------------ | ----------------------------------------------------- |
+            | decrypt               | {"data": "<MY_CIPHERTEXT>"}   | {"status":200,"payload":{"result":"<PLAINTEXR>"}}     |
