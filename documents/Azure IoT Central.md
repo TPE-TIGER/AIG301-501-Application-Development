@@ -29,14 +29,14 @@ This application demonstrates below features and possibility for your owned Thin
 
 - Download application
 
-  - AIG-301: https://tpe2.azureedge.net/aic_2.0-160_armhf.mpkg
-  - AIG-501: https://tpe2.azureedge.net/aic_2.0-160_amd64.mpkg
+  - AIG-301: https://tpe2.azureedge.net/aic_2.0-210_armhf.mpkg
+  - AIG-501: https://tpe2.azureedge.net/aic_2.0-210_amd64.mpkg
   - Source : https://tpe2.azureedge.net/Python3/AzureIoTCentral-V2.0.tar
 
 - Install application on AIG-301 or AIG-501 Linux console by below command：
 
   ```
-  moxa@Moxa:~$ sudo appman app install aic_2.0-160_armhf.mpkg
+  moxa@Moxa:~$ sudo appman app install aic_2.0-210_armhf.mpkg
   ```
 
 - Verify installation completed and running well.
@@ -46,7 +46,7 @@ This application demonstrates below features and possibility for your owned Thin
   +--------------+-------------+-----------------------+--------+
   |     NAME     |   VERSION   | STATE (DESIRED STATE) | HEALTH |
   +--------------+-------------+-----------------------+--------+
-  | aic          | 2.0-160     | ready (ready)         | good   |
+  | aic          | 2.0-210     | ready (ready)         | good   |
   | edge-web     | 1.9.17-5046 | ready (ready)         | good   |
   | tagservice   | 2.2.0-575   | ready (ready)         | good   |
   +--------------+-------------+-----------------------+--------+
@@ -74,15 +74,15 @@ This application demonstrates below features and possibility for your owned Thin
   ```
   https://{IIoT Gateway IP}:8443/api/v1/aic
   ```
+  The "Home" page presentㄋ device connection status, telemetry sending tag, and command/properties processing result.
+  <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic_home.jpg" style="zoom:67%;" />
 
-  <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic_2.0_03.JPG" style="zoom:67%;" />
-
-  - Input connection data which retrieve from Azure IoT Central
-  - Import Telemetry Map File:
+  Click "Connection Setting" page, input device connection credential which you retrieved from Azure IoT Central.
+  <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic_config.jpg" style="zoom:67%;" />
+  - You have to import Telemetry Map File:
     - AIG-301: <a href="https://thingspro.blob.core.windows.net/resource/document/aic/TelemetryMap-AIG-301-3.json"> Map File </a>
     - AIG-501: <a href="https://thingspro.blob.core.windows.net/resource/document/aic/TelemetryMap-AIG-501-3.json"> Map File </a>
-
-  
+ 
 
 ### 2. Functionality
 
