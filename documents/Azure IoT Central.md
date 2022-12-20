@@ -189,12 +189,10 @@ This demo application supports below authentication type to Azure IoT Central
 
 ### 4. Azure IoT Central Known Issue
 
-1. On Azure IoT Central, there is no way to update property for a individual device. Only allow to update property for one or many device group.
-
-2. When apply properties update on IoT Central, IoT Central show all devices' status are completed, but it means the desired properties sent to Azure IoT Hub, rather than devices receive desired properties.
+1. When update properties on IoT Central, IoT Central show all devices' status are completed, but it means the desired properties sent to Azure IoT Hub, rather than devices receive desired properties.
 
    <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic02.jpg" style="zoom: 50%;" />
 
    
 
-3. Set ethernet_lan2_ip property will always fail on this demo application by design (due to incomplete payload), but this exception message doesn't display on Azure IoT Central, even demo app follows Azure Plug & Play (DTDL) conversation (refer to https://docs.microsoft.com/en-us/azure/iot-develop/concepts-convention)
+2. Set ethernet_lan2_ip property will always fail on this demo application by design (due to incomplete payload), but this exception message doesn't display on Azure IoT Central, even demo app follows Azure Plug & Play (DTDL) conversation (refer to https://docs.microsoft.com/en-us/azure/iot-develop/concepts-convention)
