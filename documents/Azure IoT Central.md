@@ -74,7 +74,7 @@ This application demonstrates below features and possibility for your owned Thin
   ```
   https://{IIoT Gateway IP}:8443/api/v1/aic
   ```
-  The "Home" page presentㄋ device connection status, telemetry sending tag, and command/properties processing result.
+  The "Home" page presents device connection status, telemetry sending tag, and command/properties processing result.
   <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic_home.jpg" style="zoom:67%;" />
 
   Click "Connection Setting" page, input device connection credential which you retrieved from Azure IoT Central.
