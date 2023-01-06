@@ -139,7 +139,7 @@ With few minutes waiting, you shall able to see Azure IoT Edge running status by
 
 AIC Module Web: **http://{device IP}:5449/aic**
 
-**4.1.1 AIC Module Status Monitor**
+##### **4.1.1 AIC Module Status Monitor**
 
 <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aig-edge-aic16.JPG" style="zoom:50%;" />
 
@@ -151,7 +151,7 @@ This page presents module overall status, and refresh every 10 seconds automatic
 | Telemetry Status   | telemetry sent to edgeHub (local)                            |
 | Command/Properties | command from Azure IoT Central<br />desired properties from Azure IoT Central<br />reported properties to Azure IoT Central |
 
-**4.1.2 Change Telemetry Behavior**
+##### **4.1.2 Change Telemetry Behavior**
 
 <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aig-edge-aic17.JPG" style="zoom:50%;" />
 
@@ -165,7 +165,7 @@ This page allows you to...
 | Azure IoT Central Application URL | To invoke your AIC Restful API for uploading file. Refer to 4.3.1 |
 | Azure IoT Central API Token       | To invoke your AIC Restful API for uploading file. Refer to 4.3.1 |
 
-**4.1.3 Resource**
+##### **4.1.3 Resource**
 
 <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aig-edge-aic18.JPG" style="zoom:50%;" />
 
@@ -176,7 +176,7 @@ This page allows you to...
 | Telemetry Map File | The default tag map file or the customize version you upload |
 | Read Me            | Link to this document                                        |
 
-**4.1.4 Customize Telemetry Schema**
+##### **4.1.4 Customize Telemetry Schema**
 
 To send out other than default tags from AIG-301 device to Azure IoT Central, you shall tell AIC Module what it is.
 
@@ -244,195 +244,36 @@ To send out other than default tags from AIG-301 device to Azure IoT Central, yo
 
 #### 4.3 Operation Domain - Manage AIG-301 on Cloud
 
-**4.3.1 Allow devices upload files to Azure IoT Central**
+##### **4.3.1 Allow devices upload files to Azure IoT Central**
 
-**4.3.2 Setup Network Interface**
+1. Attach Azure blob storage into Azure IoT Central
+2. Create Azure IoT Central API Token
+3. Apply Credential on AIG-301 AIC Module
 
-**4.3.3 Setup Serial Port**
-
-**4.3.4 Export/Import Modbus Master Configuration**
-
-**4.3.5 Export Device System Log**
-
-**4.3.6 Export/Import Device Configuration**
-
-**4.3.7 OTA Software Upgrade**
-
-**4.3.8 Reboot Device**
-
-**4.3.9 Enable/Disable Telemetry**
-
-**4.3.10 Enable/Disable Device Services**
+##### **4.3.2 Setup Network Interface**
 
 
 
+##### **4.3.3 Setup Serial Port**
+
+##### **4.3.4 Export/Import Modbus Master Configuration**
+
+##### **4.3.5 Export Device System Log**
+
+##### **4.3.6 Export/Import Device Configuration**
+
+##### **4.3.7 OTA Software Upgrade**
+
+##### **4.3.8 Reboot Device**
+
+##### **4.3.9 Enable/Disable Telemetry**
+
+##### **4.3.10 Enable/Disable Device Services**
 
 
 
 
-### 2. Understand AIG-301/AIG-501 Device Template
-
-aic_module_20 contains **12 Commands**, **2 Telemetry Tags**, and **8 Properties**. 
-
-##### 2.1 **Commands**
-
-| No   | Command Name               | Description                                                  |
-| ---- | -------------------------- | ------------------------------------------------------------ |
-| 1    | interface_cellular_auto    | to setup device cellular with auto detection mode            |
-| 2    | interface_cellular_manual  | to setup device cellular by input values                     |
-| 3    | interface_ethernet_auto    | to setup device ethernet with DHCP mode                      |
-| 4    | interface_ethernet_manual  | to setup device ethernet with static IP                      |
-| 5    | interface_GPS_auto         | to setup device location by GPS's signal                     |
-| 6    | interface_GPS_manual       | to setup device location by input values                     |
-| 7    | interface_serials          | to setup serial port, including rs232, baudRate, dataBit, stopBit ... |
-| 8    | applications_control       | to start/stop/restart/uninstall applications (such as Modbus Master, OPC UA...) |
-| 9    | modbusmaster_config_import | to import modbus master configuration (csv file) from an URL |
-| 10   | modbusmaster_config_export | to export modbus master configuration (csv file) to Azure IoT Central |
-| 11   | telemetry_control          | to start/stop telemetry which sending from device to Azure IoT Central |
-| 12   | software_upgrade           | to install/upgrade software of device                        |
-| 13   | system_reboot              | to reboot device                                             |
-| 14   | thingspro_api_v1           | to invoke AIG-301/AIG-50 support Restful API from Azure IoT Central |
-
-##### 2.2 **Telemetry Tags** 
-
-| No   | Tag Name    | Description         |
-| ---- | ----------- | ------------------- |
-| 1    | cpuUsage    | device CPU usage    |
-| 2    | memoryUsage | device Memory usage |
-
-You can extend Telemetry without change any code. Please refer to ....
-
-##### 2.3 **Properties**
-
-| No   | Property Key   | Description                                             |
-| ---- | -------------- | ------------------------------------------------------- |
-| 1    | http_server    | to enable/disable http server and setup port            |
-| 2    | https_server   | to enable/disable https server and setup port           |
-| 3    | ssh_server     | to enable/disable ssh server and setup port             |
-| 4    | discovery      | to enable/disable device provision service and behavior |
-| 5    | serial_console | to enable/disable local console port                    |
-| 6    | time           | to setup timezone and network time server               |
-| 7    | general        | to change hostname and description of device            |
 
 
 
-- 
-
-- The connected status shall present on Azure IoT Central as well.
-
-  <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aig-edge-aic08.JPG" style="zoom:67%;" />
-
-  
-  
-
-
-### 4. Operation
-
-##### 4.1 aic_module_20 admin web
-
-|      | command        | note                               |
-| ---- | -------------- | ---------------------------------- |
-| 1    | reboot         | To restart device                  |
-| 2    | turnOnMonitor  | To turn on device monitor feature  |
-| 3    | turnOffMonitor | To turn off device monitor feature |
-
-##### 4.2 Change device physical interface setting from Azure IoT Central
-
-|      | name          | note                                                         |
-| ---- | ------------- | ------------------------------------------------------------ |
-| 1    | cpuUsage      | CPU loading data will send to Azure IoT Central after turn on Monitor |
-| 2    | lan1NetworkTx | LAN 1 outbound traffic will send to Azure IoT Central after turn on Monitor |
-| 3    | lan1NetworkRx | LAN 1 inbound traffic will send to Azure IoT Central after turn on Monitor |
-| 4    | memoryUsed    | Memory usage data will send to Azure IoT Central after turn on Monitor |
-| 5    | Temperature   | A tag from Modbus slave device will send to Azure IoT Central after turn on Monitor |
-| 6    | Inverter      | A tag from Modbus slave device will send to Azure IoT Central after turn on Monitor |
-| 7    | LUX           | A tag from Modbus slave device will send to Azure IoT Central after turn on Monitor |
-
-##### 4.3 2.3 Telemetry Map File
-
-You are welcome to add/remove/update telemetry schema by yourself without change any code. The purpose of Telemetry Map File is for you to define how these data come from. 
-
-**Example 1** : cpuUsage tag
-
-To publish cpuUsage tag to Azure IoT Central, you need to know cpuUsage is a AIG-301 system level tag, and the tag schema are:
-
-| Key           | Value    |
-| ------------- | -------- |
-| Provider Name | system   |
-| Source Name   | status   |
-| Tag Name      | cpuUsage |
-
-With that, you need to define these key-value for cpuUsage tag at Telemetry Map File.
-
-**Example 2** : Inverter tag
-
-Inverter tag is not out of box AIG-301 tag, which could be generated from external device, such as Modbus slave. You can enable AIG-301 Modbus Master application to pull these external tags from slave devices. The tag schema will depend on what your configuration on Modbus Master.
-
-| Key           | Value                                                        |
-| ------------- | ------------------------------------------------------------ |
-| Provider Name | the value cloud be **modbus_tcp_master** or **modbus_serial_master** |
-| Source Name   | the value is {**Device Name**} which you assigned on Modbus Master application |
-| Tag Name      | the value is {**tag name**} which you input on Modbus Master application |
-
-**Note**: the value of key "**@id**" shall same with value in DTDL file.
-
-```
-{    
-    "@id": "dtmi:com:moxa:AIG501;3",
-    "contents": [ 
-        {
-            "@type":"Telemetry",
-            "name": "cpuUsage",
-            "aigTag" : {
-                "prvdName": "system",
-                "srcName": "status",
-                "tagName": "cpuUsage"
-            }
-        },
-        ..............
-        ..............
-        {
-            "@type": "Telemetry",
-            "name": "Inverter",
-            "aigTag" : {
-                "prvdName": "modbus_tcp_master",
-                "srcName": "MGate",
-                "tagName": "Inverter"
-            }
-        }
-    ]
-}
-```
-
-
-
-##### 2.4 Property
-
-|      | name                 | Note                                                         |
-| ---- | -------------------- | ------------------------------------------------------------ |
-| 1    | general_serialNumber | Read only, to display device serial number                   |
-| 2    | general_deviceModel  | Read only, to display device model name                      |
-| 3    | general_hostName     | Read/Write, to display and set device host name              |
-| 4    | service_ssh          | Read/Write, to display and enable/disable ssh service of device |
-| 5    | ethernet_lan2_ip     | Read/Write, to display and set LAN2 IP address               |
-
-### 3. Azure IoT Central Device Authentication
-
-This demo application supports below authentication type to Azure IoT Central
-
-|      | Authentication type           | Note                                                 |
-| ---- | ----------------------------- | ---------------------------------------------------- |
-| 1    | Shared access signature (SAS) | Symmetric Key：From Azure IoT Central                |
-| 2    | Certificates (X.509)          | X.509 Certificate：Generated by Root/Intermediate CA |
-
-
-
-### 4. Azure IoT Central Known Issue
-
-1. When update properties on IoT Central, IoT Central show all devices' status are completed, but it means the desired properties sent to Azure IoT Hub, rather than devices receive desired properties.
-
-   <img src="https://thingspro.blob.core.windows.net/resource/document/aic/aic02.jpg" style="zoom: 50%;" />
-
-   
-
-2. Set ethernet_lan2_ip property will always fail on this demo application by design (due to incomplete payload), but this exception message doesn't display on Azure IoT Central, even demo app follows Azure Plug & Play (DTDL) conversation (refer to https://docs.microsoft.com/en-us/azure/iot-develop/concepts-convention)
+2. 
