@@ -1,4 +1,4 @@
-# Leveraging DIO in IoT EdgeModule
+# Leveraging DIO in IoT Edge Module
 
 Document Version: V1.0
 

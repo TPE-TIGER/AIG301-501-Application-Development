@@ -1,4 +1,4 @@
-# Leveraging TPM in IoT EdgeModule
+# Leveraging TPM in IoT Edge Module
 
 Document Version: V1.0
 
