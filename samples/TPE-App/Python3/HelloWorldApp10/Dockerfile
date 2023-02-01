@@ -1,4 +1,4 @@
-FROM arm32v7/python:3.7.11-slim-stretch
+FROM amd64/python:3.7.11-slim-stretch
 ENV APP hello-app
 COPY . /${APP}
 WORKDIR /${APP}
