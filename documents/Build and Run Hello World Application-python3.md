@@ -34,9 +34,9 @@ This document guide you how to develop, build and deploy a simple ThingsPro Edge
 #### 2.1 Download Hello World Application
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp10.tar
+$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp10-amd64.tar
 
-$ tar -xvf HelloWorldApp10.tar
+$ tar -xvf HelloWorldApp10-amd64.tar
 ```
 
 #### 2.2 ThingsPro Edge Application Structure
@@ -114,7 +114,7 @@ spec:
   name: hello-world
   displayname: Hello World App
   version: 1.0
-  arch: armhf
+  arch: amd64
 ```
 
 ##### 2.4.3 Edit nginx.conf
@@ -179,7 +179,7 @@ $ appman app install hello-world_1_armhf.mpkg
 
 {
   "data": {
-    "arch": "armhf",
+    "arch": "amd64",
     "attributes": null,
     "availableVersions": [],
     "category": "",
@@ -191,7 +191,7 @@ $ appman app install hello-world_1_armhf.mpkg
     "health": "wait",
     "icon": "",
     "id": "hello-world",
-    "imageSize": 90668032,
+    "imageSize": 114461696,
     "mem_limit": 0,
     "name": "hello-world",
     "ports": {
