@@ -1,4 +1,4 @@
-Flask==1.0.2
-requests==2.27.1
-tpfunc==1.2.3
-requests_unixsocket==0.3.0
+Flask
+requests
+tpfunc
+requests_unixsocket

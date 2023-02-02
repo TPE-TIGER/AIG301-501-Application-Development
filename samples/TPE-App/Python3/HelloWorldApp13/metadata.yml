@@ -4,4 +4,4 @@ spec:
   name: hello-world
   displayname: Hello World App
   version: 1.3
-  arch: armhf
+  arch: amd64

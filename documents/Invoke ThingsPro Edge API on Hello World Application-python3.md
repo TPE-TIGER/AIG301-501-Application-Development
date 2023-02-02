@@ -98,7 +98,7 @@ This new Restful API will invoke ThingsPro Edge Restful API: /api/v1/apps, and r
 #### 2.1 Download Hello World Application 1.1
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp11.tar
+$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp11-amd64.tar
 ```
 
 #### 2.2 ThingsPro Edge Application 1.1 Structure

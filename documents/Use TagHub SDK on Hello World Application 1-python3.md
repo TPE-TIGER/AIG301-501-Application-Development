@@ -115,7 +115,7 @@ def put_tag():
 #### 2.1 Download Hello World Application 1.2
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp12.tar
+$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp12-amd64.tar
 ```
 
 #### 2.2 ThingsPro Edge Application 1.2 Structure
