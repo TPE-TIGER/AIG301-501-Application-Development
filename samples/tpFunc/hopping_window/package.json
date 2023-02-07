@@ -1,0 +1,54 @@
+{
+  "name": "hoppingWindowCal",
+  "enabled": true,
+  "trigger": {
+    "driven": "timeDriven",
+    "dataDriven": {
+      "tags": {},
+      "events": {}
+    },
+    "timeDriven": {
+      "mode": "boot",
+      "intervalSec": 1,
+      "cronJob": ""
+    }
+  },
+  "expose": {
+    "tags": []
+  },
+  "executable": {
+    "language": "python"
+  },
+  "params": {
+    "hoppingWindowsSec": 60,
+    "calMethod": "average",
+    "tags": [
+      {
+        "sourceTag": {
+          "prvdName": "system",
+          "srcName": "status",
+          "tagName": "cpuUsage"
+        },
+        "virtualTag": {
+          "prvdName": "tpFunc",
+          "srcName": "hoppingWindowCal",
+          "tagName": "cpuUsage_avg",
+          "dataType": "double"
+        }
+      },
+      {
+        "sourceTag": {
+          "prvdName": "system",
+          "srcName": "status",
+          "tagName": "memoryUsage"
+        },
+        "virtualTag": {
+          "prvdName": "tpFunc",
+          "srcName": "hoppingWindowCal",
+          "tagName": "memoryUsage_avg",
+          "dataType": "double"
+        }
+      }
+    ]
+  }
+}
