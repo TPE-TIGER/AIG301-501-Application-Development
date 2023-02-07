@@ -81,7 +81,7 @@ Note: for more information about hopping window, please refer to <a href="https:
    | ----------------- | ------------------------------------------------------------ |
    | hoppingWindowsSec | Hopping Window length in seconds                             |
    | calMethod         | "average": Average value of all valid records<br />"counter": Valid record numbers |
-   | tags/sourceTag    | The original tag you desired                                 |
+   | tags/sourceTag    | The origin tag you desired                                 |
    | tags/virtualTag   | The new tag you desired, the tag value will be output of hopping window |
 
    Note: **tags** support array type.
