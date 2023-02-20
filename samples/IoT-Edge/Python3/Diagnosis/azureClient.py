@@ -34,16 +34,21 @@ class azureClient():
     async def method_handler(self, method_request):
         print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Direct Method Received] Method Name = {0}, Payload = {1}'.format(method_request.name, method_request.payload))
 
-        result = self.module.prepare_and_upload()
-        if result:
-            payload = {'message': 'File Upload Done', 'URL': result}
+        if method_request.name == 'remove-log':
+            self.module.remove_log(1) # Intentionally keep the most recent log file, to avoid possible collision with scheduled or manually triggered jobs
+            payload = {'message': 'Local Log Files Removed'}
             status = 200
         else:
-            payload = {'message': 'Failed to upload syslog, do you have azure_blob_connection_string and azure_blob_storage_container configured?'}  # set response payload
-            status = 500  # set return status code
+            result, message = self.module.prepare_and_upload()
+            if result == 0:
+                payload = {'message': 'File Upload Done', 'URL': message}
+                status = 200
+            else:
+                payload = {'message': message}
+                status = 500
 
         method_response = MethodResponse.create_from_method_request(method_request, status, payload)
-        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Direct Method Response] Status = {0}. Payload = {1}'.format(status, payload))
+        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Direct Method Response] Status = {0}. Result = {1}'.format(status, payload))
         await self.azure_client.send_method_response(method_response)  # send response
 
     # define behavior for receiving a twin patch
@@ -56,7 +61,7 @@ class azureClient():
             if patch['upload_log'] is not None:
                 self.module.set_trigger(patch['upload_log'])
                 report['upload_log'] = patch['upload_log']
-            
+
         if 'azure_blob_connection_string' in patch:
             if patch['azure_blob_connection_string']:
                 result = self.module.set_blob_connection_string(patch['azure_blob_connection_string'])
@@ -71,6 +76,11 @@ class azureClient():
             if patch['log_frequency']:
                 result = self.module.set_log_frequency(patch['log_frequency'])
                 report['log_frequency'] = result
+
+        if 'max_log_count' in patch:
+            if patch['max_log_count']:
+                result = self.module.set_max_log_count(patch['max_log_count'])
+                report['max_log_count'] = result
 
         if 'message_frequency' in patch:
             if patch['message_frequency']:
@@ -97,3 +107,4 @@ class azureClient():
     async def send_twin(self, report):
         print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Sending Module Twin] Report = {}'.format(report))
         await self.azure_client.patch_twin_reported_properties(report)
+
