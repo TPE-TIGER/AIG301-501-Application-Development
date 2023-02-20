@@ -24,4 +24,3 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 CMD ["python", "-u", "/app/module.py"]
-# CMD ["tail", "-f", "/dev/null"]

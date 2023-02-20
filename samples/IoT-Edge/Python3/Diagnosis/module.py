@@ -1,4 +1,4 @@
-import signal, asyncio, json, time
+import signal, asyncio, json, time, os, glob
 from tpeClient import tpeClient
 from azureClient import azureClient
 from storageClient import storageClient
@@ -16,6 +16,7 @@ class moduleInstance():
     message_frequency_new = 0
     message_frequency = 30
     log_frequency = 86400
+    max_log_count = 0
     counter_message = 0
     counter_log = 0
 
@@ -44,9 +45,10 @@ class moduleInstance():
         print('[Module Default Settings]')
         print('Enable Log Upload = ' + str(self.upload_log))
         print('Log Upload Frequency = ' + str(self.log_frequency))
+        print('Maximum Local Log File Count = ' + str(self.max_log_count))
         print('Heartbeat Message Frequency = ' + str(self.message_frequency))
         print('============================================================')
-        
+
     # Define a handler to cleanup when module is is terminated by Edge
     async def module_termination_handler(self, signal):
         print(time.strftime('%Y/%m/%d %H:%M:%S') + ' Module Stopped')
@@ -89,15 +91,26 @@ class moduleInstance():
         result = self.prepare_log()
         if result['status'] >= 200 and result['status'] < 300:
             return self.upload_log_to_storage(result['message'])
-    #   else:
-    #       print(time.strftime('%Y/%m/%d %H:%M:%S') + ' Skip Work...')
-        return None
+        else:
+            print(time.strftime('%Y/%m/%d %H:%M:%S') + ' Failed to prepare log, skipped.')
+            return 1, 'Failed to prepare log, skipped.'
 
     def prepare_log(self):
-        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Prepare Log] Prepare start')
+        self.remove_log(self.max_log_count - 1) # Clean up a position for the new log file
+        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Prepare Log] Start')
         result = self.tpe_client.invoke_api('GET', '/system/log?download=true', None, True)
-        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Prepare Log] Prepare conplete, file path = ' + result['message'])
+        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Prepare Log] Complete, file path = ' + result['message'])
         return result
+
+    def remove_log(self, keep_file_count):
+        if keep_file_count <= 0 or keep_file_count == None:
+            return
+        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Remove Log] Start')
+        files = sorted(glob.glob('/host/log/*.zip'))
+        count = len(files)
+        for i in range(count - keep_file_count):
+            os.remove(files[i])
+        print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Remove Log] Complete')
 
     def set_blob_connection_string(self, azure_blob_connection_string):
         return self.storage_client.set_blob_connection_string(azure_blob_connection_string)
@@ -110,6 +123,11 @@ class moduleInstance():
         self.log_frequency_new = log_frequency
         return self.log_frequency_new
 
+    def set_max_log_count(self, max_log_count):
+        self.max_log_count = max_log_count
+        self.remove_log(self.max_log_count)
+        return self.max_log_count
+
     def set_message_frequency(self, message_frequency):
         self.set_message = True
         self.message_frequency_new = message_frequency
@@ -117,8 +135,6 @@ class moduleInstance():
 
     def upload_log_to_storage(self, filepath):
         result = self.storage_client.upload_log_to_storage(filepath)
-        if result:
-            print(time.strftime('%Y/%m/%d %H:%M:%S') + " [Upload Log] Upload complete, URL = " + result)
         return result
 
     def set_trigger(self, upload_log):
@@ -130,3 +146,4 @@ async def main():
 
 if __name__ == '__main__':
     module_client = moduleInstance()
+
