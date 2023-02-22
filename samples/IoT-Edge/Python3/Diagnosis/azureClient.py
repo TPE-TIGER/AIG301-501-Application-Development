@@ -96,6 +96,7 @@ class azureClient():
 
     async def connect(self):
         await self.azure_client.connect()
+        await self.azure_client.get_twin()
 
     async def send_message(self, topic, message):
         print(time.strftime('%Y/%m/%d %H:%M:%S') + ' [Sending D2C Message] Topic = {0}, Payload = {1}'.format(topic, message))
