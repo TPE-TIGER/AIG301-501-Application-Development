@@ -1,7 +1,7 @@
-# TPE2-Application-Development
+# AIG301/501 Application Development
 
-### ThingsPro Edge Application v.s. tpFunc Function
-There are two ways for customers to develop, run your own application on ThingsPro Edge device. Both ways allow your application to integrate and leverage ThingsPro Edge's capabilities and features by Restful API and SDK.
+### ThingsPro Edge Application v.s. tpFunc Function v.s. Azure IoT Edge Module
+There are 3 ways for customers to develop, run your own application on AIG301/501 device. All these ways allow your application to integrate and leverage ThingsPro Edge's capabilities and features by Restful API and SDK.
 
 The application could be edge computing program (to calculate, manipulate, analysis data on edge), data acquisition (to fetch data by proprietary protocols), scheduling task (to arrange routine operation tasks), or data publish program (to transfer data to specific IT system).
 
