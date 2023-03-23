@@ -1,28 +1,29 @@
 # AIG301/501 Application Development
 
-### ThingsPro Edge Application v.s. tpFunc Function v.s. Azure IoT Edge Module
+### TPE Application v.s. tpFunc Function v.s. AIE Module
+
 There are 3 ways for customers to develop, run your own application on AIG301/501 device. All these ways allow your application to integrate and leverage ThingsPro Edge's capabilities and features by Restful API and SDK.
 
 The application could be edge computing program (to calculate, manipulate, analysis data on edge), data acquisition (to fetch data by proprietary protocols), scheduling task (to arrange routine operation tasks), or data publish program (to transfer data to specific IT system).
 
 Below table gives you ideas how to select suitable application development way to fit your requirements.
 
-|                        | ThingsPro Edge Application                                   | tpFunc Function                                       |
-| ---------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
-| Framework              | Docker container managed by ThingsPro Edge                   | Python program managed by tpFunc                      |
-| Language               | All programing language                                      | Python 3                                              |
-| TagHub SDK             | Python, C and Go Lang SDK                                       | Python SDK                                            |
-| Access TPE API         | OK                                                           | OK                                                    |
-| LAN Access             | OK                                    | OK                                      |
-| WAN Access             | OK                                      | OK                                        |
-| Storage Access         | OK                                      | X                                                     |
-| Serial Port Access     | OK (*)                                     | X                                                     |
-| BLE Access             | OK (*)                                     | X                                                     |
-| Expose Restful API     | OK                                      | OK                                         |
-| Expose Web GUI         | OK                                      | X                                                     |
-| Knowledge Require      | Docker container<br />Application design<br />Linux Driver & Utility<br />ThingsPro Edge Application build and deployment | Python coding<br />tpFunc deployment                  |
-| Program Design Pattern | By your own                                                  | - Time Driven<br />- Data Driven<br />- Web API Style |
-| Other Limitations      |                                                              | - One source code                                     |
+|                        | TPE Application                                              | tpFunc Function                                       | AIE Module                                                   |
+| ---------------------- | ------------------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------ |
+| Framework              | Docker container managed by ThingsPro Edge                   | Python program managed by tpFunc                      | Docker container managed by Azure IoT Edge                   |
+| Language               | All programing language                                      | Python 3                                              | All programing language                                      |
+| TagHub SDK             | Python, C and Go Lang SDK                                    | Python SDK                                            | Python, C and Go Lang SDK                                    |
+| Access TPE API         | OK                                                           | OK                                                    | OK                                                           |
+| LAN Access             | OK                                                           | OK                                                    | OK                                                           |
+| WAN Access             | OK                                                           | OK                                                    | OK                                                           |
+| Storage Access         | OK                                                           | X                                                     | OK                                                           |
+| Serial Port Access     | OK (*)                                                       | X                                                     | OK (*)                                                       |
+| BLE Access             | OK (*)                                                       | X                                                     | OK (*)                                                       |
+| Expose Restful API     | OK                                                           | OK                                                    | OK                                                           |
+| Expose Web GUI         | OK                                                           | X                                                     | OK                                                           |
+| Knowledge Require      | - Docker container Application design<br />- Linux Driver & Utility<br />- ThingsPro Edge Application build and deployment | Python coding tpFunc deployment                       | - Docker container Application<br />design<br />- Linux Driver & Utility<br />- Azure IoT Edge |
+| Program Design Pattern | By your own                                                  | - Time Driven<br />- Data Driven<br />- Web API Style | By your own                                                  |
+| Other Limitations      |                                                              | - all source code must keep at 1 file                 |                                                              |
 
 (*) Need to mount physical resources into Docker container
 
