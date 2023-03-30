@@ -35,8 +35,8 @@ Below table gives you ideas how to select suitable application development way t
 2. <a href="documents/Invoke%20ThingsPro%20Edge%20API%20on%20Hello%20World%20Application-python3.md">Invoke ThingsPro Edge API on "Hello World" Application</a>
 3. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%201-python3.md">Use TagHub SDK on Hello World Application 1</a> (publish tag)
 4. <a href="documents/Use%20TagHub%20SDK%20on%20Hello%20World%20Application%202-python3.md">Use TagHub SDK on Hello World Application 2</a> (subscribe tag)
-5. <a href="documents/Bind%20Hello%20World%20Application%20on%20Host%20Port%20-%20Way%201.md">Bind Hello World Application on Host Port - Way 1</a> (subscribe tag)
-6. <a href="documents/Bind%20Hello%20World%20Application%20on%20Host%20Port%20-%20Way%202.md">Bind Hello World Application on Host Port - Way 2</a> (subscribe tag)
+5. <a href="documents/Bind%20Hello%20World%20Application%20on%20Host%20Port%20-%20Way%201.md">Bind Hello World Application on Host Port - Way 1</a>
+6. <a href="documents/Bind%20Hello%20World%20Application%20on%20Host%20Port%20-%20Way%202.md">Bind Hello World Application on Host Port - Way 2</a>
 7. <a href="documents/Azure%20IoT%20Central.md">(Example) Azure IoT Central Demo Application</a>
 8. <a href="documents/OPC%20UA%20Client%20Sample%20Application-python3.md">(Example) OPC UA Client Application</a>
 9. <a href="documents/File%20Upload:%20from%20FTP%20to%20AWS%20S3.md">(Example) File Download/Upload Sample Application</a>
