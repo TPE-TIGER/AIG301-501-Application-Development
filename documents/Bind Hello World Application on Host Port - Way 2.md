@@ -54,7 +54,7 @@ spec:
 
 ### 3. Build "Hello World" Application
 
-- Download <href="https://github.com/TPE-TIGER/AIG301-501-Application-Development/blob/main/samples/TPE-App/Python3/HelloWorldApp101/HelloWorldApp101.zip">helloworld:1.0.1 sample code</a>
+- Download <a href="https://github.com/TPE-TIGER/AIG301-501-Application-Development/blob/main/samples/TPE-App/Python3/HelloWorldApp101/HelloWorldApp101.zip">helloworld:1.0.1 sample code</a>
 - Follow this document <a href="https://github.com/TPE-TIGER/AIG301-501-Application-Development/blob/main/documents/Build%20and%20Run%20Hello%20World%20Application-python3.md">(Build and Run "Hello World" Application)</a> to build "Hello World" application version 1.0.1
 
 ```
