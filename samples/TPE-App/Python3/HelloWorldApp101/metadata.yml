@@ -1,0 +1,10 @@
+kind: app
+version: v1
+spec:
+  name: helloworld
+  displayname: Hello World App
+  version: 1.0.1
+  arch: armhf
+  ports:
+    forward:
+      - 443:80/tcp

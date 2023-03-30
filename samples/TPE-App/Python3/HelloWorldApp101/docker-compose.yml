@@ -1,0 +1,4 @@
+version: '2'
+services:
+  app:
+    image: helloworld:1.0.1
