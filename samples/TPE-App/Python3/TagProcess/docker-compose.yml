@@ -1,0 +1,4 @@
+version: '2'
+services:
+  app:
+    image: tag_process_sample:1.0.0

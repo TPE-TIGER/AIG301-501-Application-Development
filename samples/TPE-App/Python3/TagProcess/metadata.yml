@@ -1,0 +1,7 @@
+kind: app
+version: v1
+spec:
+  name: tag_process_sample
+  displayname: Tag Process Sample App
+  version: 1.0.0
+  arch: armhf

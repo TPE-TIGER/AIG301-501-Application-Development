@@ -40,6 +40,7 @@ Below table gives you ideas how to select suitable application development way t
 7. <a href="documents/Azure%20IoT%20Central.md">(Example) Azure IoT Central Demo Application</a>
 8. <a href="documents/OPC%20UA%20Client%20Sample%20Application-python3.md">(Example) OPC UA Client Application</a>
 9. <a href="documents/File%20Upload:%20from%20FTP%20to%20AWS%20S3.md">(Example) File Download/Upload Sample Application</a>
+10. <a href="documents/Tag%20Processing%20in%20ThingsPro%20Edge%20Application.md">(Example) Tag Processing in ThingsPro Edge Application</a>
 
 #### Dotnet Core C# Sample App
 1. <a href="documents/Build%20and%20Run%20Hello%20World%20Application-dotnet.md">Build and Run "Hello World" Application</a>
