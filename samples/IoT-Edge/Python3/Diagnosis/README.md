@@ -26,7 +26,9 @@ This document guide you how to deploy a diagnosis module on TPE devices and leve
 
 #### 1.2 Deploy the Module from Azure Portal
 
-- Image URL: frankshli/tpe_diagnosis_module:1.0.0-armhf
+- Image URL: frankshli/tpe_diagnosis_module:1.0.3-armhf
+
+  > Note: This docker image url allows us to test the module's functionality without having to go through the whole build process. However, it's recommended to build and maintain your own image versions when going into production.
 
 - Container Create Option: 
 
