@@ -1,0 +1,48 @@
+[
+  {
+    "src": {
+      "value": {
+        "modbus_tcp_master": {
+          "mbtcp_simulator": [
+            "value_1"
+          ]
+        }
+      },
+      "scale": {
+        "modbus_tcp_master": {
+          "mbtcp_simulator": [
+            "value_1_sf"
+          ]
+        }
+      }
+    },
+    "dst": {
+      "virtual": {
+        "result": "result_1"
+      }
+    }
+  },
+  {
+    "src": {
+      "value": {
+        "modbus_tcp_master": {
+          "mbtcp_simulator": [
+            "value_2"
+          ]
+        }
+      },
+      "scale": {
+        "modbus_tcp_master": {
+          "mbtcp_simulator": [
+            "value_2_sf"
+          ]
+        }
+      }
+    },
+    "dst": {
+      "virtual": {
+        "result": "result_2"
+      }
+    }
+  }
+]
