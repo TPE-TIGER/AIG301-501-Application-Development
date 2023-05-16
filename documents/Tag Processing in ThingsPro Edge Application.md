@@ -67,7 +67,7 @@ $ docker run --rm -it -v $(pwd):/app/ -v $(which docker):/usr/bin/docker -v /var
 $ cd app
 ```
 
-##### 2.3.3 Build docker image with image name: <font color='green'><b>tag_process_sample:1.0.0</b></font>. The image name must match the image name that's specified in docker-compose.yml.
+##### 2.3.3 Build docker image with image name: <font color='green'><b>tag_process_sample:1.0.0-amd64</b></font>. The image name must match the image name that's specified in docker-compose.yml.
 
 ```
 $ docker build . -t tag_process_sample:1.0.0-amd64
@@ -79,11 +79,11 @@ $ docker build . -t tag_process_sample:1.0.0-amd64
 $ tdk pack
 ```
 
-If the application packing went well, a file `tag_process_sample_1.0.0_armhf.mpkg` will be created in the same folder.
+If the application packing went well, a file `tag_process_sample_1.0.0_amd64.mpkg` will be created in the same folder.
 
 ### 3. Deploying the Module
 
-The easiest way to install a mpkg file is to tranfer the file to the target unit with `scp`, then install it with command `appman app install tag_process_sample_1.0.0_armhf.mpkg`.
+The easiest way to install a mpkg file is to tranfer the file to the target unit with `scp`, then install it with command `appman app install tag_process_sample_1.0.0_amd64.mpkg`.
 
 ### 4. Testing the Module
 
