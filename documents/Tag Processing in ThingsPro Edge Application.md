@@ -31,7 +31,7 @@ This document guides you how to customize a TPE application, which subscribes ta
 #### 2.1 Download Sample Module
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/TagProcess.tar.gz
+$ wget https://tpe2.thingspro.io/tpe2/Python3/TagProcess.tar.gz
 
 $ mkdir TagProcess
 $ tar -zxvf TagProcess.tar.gz -C TagProcess

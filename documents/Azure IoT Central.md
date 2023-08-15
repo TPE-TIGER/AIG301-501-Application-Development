@@ -29,9 +29,9 @@ This application demonstrates below features and possibility for your owned Thin
 
 - Download application
 
-  - AIG-301: https://tpe2.azureedge.net/aic_2.0-210_armhf.mpkg
-  - AIG-501: https://tpe2.azureedge.net/aic_2.0-210_amd64.mpkg
-  - Source : https://tpe2.azureedge.net/Python3/AzureIoTCentral-V2.0.tar
+  - AIG-301: https://tpe2.thingspro.io/tpe2/aic_2.0-210_armhf.mpkg
+  - AIG-501: https://tpe2.thingspro.io/tpe2/aic_2.0-210_amd64.mpkg
+  - Source : https://tpe2.thingspro.io/tpe2/Python3/AzureIoTCentral-V2.0.tar
 
 - Install application on AIG-301 or AIG-501 Linux console by below command：
 

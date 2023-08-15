@@ -21,12 +21,12 @@ RUN apt update \
 # Install TPE libraries
 RUN apt update \
     && apt install -y libprotobuf-c1 wget \
-    && wget https://tpe2.azureedge.net/moxa-package/libparson1_1.1.0-1_armhf.deb \
-    && wget https://tpe2.azureedge.net/moxa-package/libparson-dev_1.1.0-1_armhf.deb \
-    && wget https://tpe2.azureedge.net/moxa-package/libmosquitto-dev_1.6.8-1%2Bun1_armhf.deb \
-    && wget https://tpe2.azureedge.net/moxa-package/libmosquitto1_1.6.8-1%2Bun1_armhf.deb \
-    && wget https://tpe2.azureedge.net/moxa-package/libmx-dx1_1.0.2-1_armhf.deb \
-    && wget https://tpe2.azureedge.net/moxa-package/libmx-dx-dev_1.0.2-1_armhf.deb \
+    && wget https://tpe2.thingspro.io/tpe2/moxa-package/libparson1_1.1.0-1_armhf.deb \
+    && wget https://tpe2.thingspro.io/tpe2/moxa-package/libparson-dev_1.1.0-1_armhf.deb \
+    && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmosquitto-dev_1.6.8-1%2Bun1_armhf.deb \
+    && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmosquitto1_1.6.8-1%2Bun1_armhf.deb \
+    && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmx-dx1_1.0.2-1_armhf.deb \
+    && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmx-dx-dev_1.0.2-1_armhf.deb \
     && dpkg -i *.deb \
     && rm *.deb
 

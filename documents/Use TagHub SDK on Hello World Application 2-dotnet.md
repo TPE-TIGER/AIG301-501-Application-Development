@@ -135,7 +135,7 @@ public void tagDataCallback(Dictionary<string,object> tag)
 #### 2.1 Download Hello World Application 1.3
 
 ```
-$ wget https://tpe2.azureedge.net/dotnet-core-6/HelloWorldApp13.tar
+$ wget https://tpe2.thingspro.io/tpe2/dotnet-core-6/HelloWorldApp13.tar
 ```
 
 #### 2.2 ThingsPro Edge Application 1.3 Structure

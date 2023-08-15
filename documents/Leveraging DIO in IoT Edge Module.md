@@ -31,7 +31,7 @@ This document guide you how to develop, build and deploy an Azure IoT Module wit
 #### 2.1 Sample Module Source Code
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/DioSample.tar.gz
+$ wget https://tpe2.thingspro.io/tpe2/Python3/DioSample.tar.gz
 
 $ mkdir DioSample
 $ tar -zxvf DioSample.tar.gz -C DioSample

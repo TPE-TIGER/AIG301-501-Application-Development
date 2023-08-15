@@ -29,7 +29,7 @@ This document guide you how to develop, build and deploy a customized ThingsPro 
 #### 2.1 Download Sample Application
 
 ```
-$ wget https://tpe2.azureedge.net/C/SampleApplication.tar.gz
+$ wget https://tpe2.thingspro.io/tpe2/C/SampleApplication.tar.gz
 
 $ tar -xvf SampleApplication.tar.gz
 ```

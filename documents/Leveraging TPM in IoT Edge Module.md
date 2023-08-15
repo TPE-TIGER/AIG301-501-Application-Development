@@ -31,7 +31,7 @@ This document guide you how to develop, build and deploy an Azure IoT Module wit
 #### 2.1 Download Sample Module
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/TpmSample.tar.gz
+$ wget https://tpe2.thingspro.io/tpe2/Python3/TpmSample.tar.gz
 
 $ mkdir TpmSample
 $ tar -zxvf TpmSample.tar.gz -C TpmSample

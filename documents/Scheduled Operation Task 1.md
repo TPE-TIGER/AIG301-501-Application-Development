@@ -32,7 +32,7 @@ Note: **tpFunc** required ThingsPro Edge V2.2.1+
 3. Download schedule1.tar and unpack it
 
    ```
-   wget https://tpe2.azureedge.net/Python3/scheduler1.tar
+   wget https://tpe2.thingspro.io/tpe2/Python3/scheduler1.tar
    
    tar -xvf scheduler1.tar
    ```

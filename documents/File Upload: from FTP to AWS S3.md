@@ -31,7 +31,7 @@ This document guide you how to develop, build and install a ThingsPro Edge Appli
 #### 2.1 Download Sample Code
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/FtpToS3.tar.gz
+$ wget https://tpe2.thingspro.io/tpe2/Python3/FtpToS3.tar.gz
 $ mkdir FtpToS3
 $ tar -zxvf FtpToS3.tar.gz -C FtpToS3
 ```

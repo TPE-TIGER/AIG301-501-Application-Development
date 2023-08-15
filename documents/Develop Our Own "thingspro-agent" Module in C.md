@@ -31,7 +31,7 @@ This document guide you how to develop, build and deploy a "thingspro-agent"-lik
 #### 2.1 Download Sample Module
 
 ```
-$ wget https://tpe2.azureedge.net/C/SampleModule.tar.gz
+$ wget https://tpe2.thingspro.io/tpe2/C/SampleModule.tar.gz
 
 $ tar -xvf SampleModule.tar
 ```

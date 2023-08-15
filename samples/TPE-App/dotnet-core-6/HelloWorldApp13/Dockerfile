@@ -28,13 +28,13 @@ COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/
     # Install Moxa TagSDK Lib
 RUN apt-get update \
   && apt-get install -q -y --fix-missing wget libicu-dev \
-  && wget https://tpe2.azureedge.net/moxa-package/mosquitto_1.6.8-1+un1_armhf.deb \
-  && wget https://tpe2.azureedge.net/moxa-package/libmosquitto1_1.6.8-1+un1_armhf.deb \
-  && wget https://tpe2.azureedge.net/moxa-package/libmosquitto-dev_1.6.8-1+un1_armhf.deb \
-  && wget https://tpe2.azureedge.net/moxa-package/libmx-dx1_1.0.2-1_armhf.deb \
-  && wget https://tpe2.azureedge.net/moxa-package/libmx-dx-dev_1.0.2-1_armhf.deb \
-  && wget https://tpe2.azureedge.net/moxa-package/libparson-dev_1.1.0-1_armhf.deb \
-  && wget https://tpe2.azureedge.net/moxa-package/libparson1_1.1.0-1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/mosquitto_1.6.8-1+un1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmosquitto1_1.6.8-1+un1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmosquitto-dev_1.6.8-1+un1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmx-dx1_1.0.2-1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/libmx-dx-dev_1.0.2-1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/libparson-dev_1.1.0-1_armhf.deb \
+  && wget https://tpe2.thingspro.io/tpe2/moxa-package/libparson1_1.1.0-1_armhf.deb \
   && apt-get install -f -y ./*.deb
 
     # Install aspnet runtime

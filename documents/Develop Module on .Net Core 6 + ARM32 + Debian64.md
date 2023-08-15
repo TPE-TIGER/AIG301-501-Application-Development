@@ -34,7 +34,7 @@ This document guide you how to develop, build and deploy an Azure IoT Module by 
 #### 2.1 Download Sample Module
 
 ```
-$ wget https://tpe2.azureedge.net/dotnet-core-6/SampleModule.tar
+$ wget https://tpe2.thingspro.io/tpe2/dotnet-core-6/SampleModule.tar
 
 $ tar -xvf SampleModule.tar
 ```

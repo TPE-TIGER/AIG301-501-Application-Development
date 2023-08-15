@@ -34,7 +34,7 @@ This document guide you how to develop, build and deploy a simple ThingsPro Edge
 #### 2.1 Download Hello World Application
 
 ```
-$ wget https://tpe2.azureedge.net/Python3/HelloWorldApp10.tar
+$ wget https://tpe2.thingspro.io/tpe2/Python3/HelloWorldApp10.tar
 
 $ tar -xvf HelloWorldApp10.tar
 ```
