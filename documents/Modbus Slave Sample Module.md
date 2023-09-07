@@ -162,13 +162,13 @@ Users can retreive or modify the tag mapping settings through REST API calls.
 - Retrieving the current settings
 
     ```
-    curl -X GET http://127.0.0.1:50000/config | jq
+    $ curl -X GET http://127.0.0.1:50000/config | jq
     ```
 
 - Modifying the tag mapping settings
 
     ```
-    curl -X POST http://127.0.0.1:50000/config \
+    $ curl -X POST http://127.0.0.1:50000/config \
     -d '[{"address":0,"prvdName":"system","srcName":"status","tagName":"memoryUsage"},{"address":4,"prvdName":"system","srcName":"status","tagName":"cpuUsage"}]' | jq
     ```
 
@@ -191,7 +191,7 @@ Users can retreive or modify the tag mapping settings through REST API calls.
 Users can also update Modbus values directly through REST API calls.
 
 ```
-curl -X POST http://127.0.0.1:50000/write -d '{"address":20, "dataType":"string","dataValue":"123"}'
+$ curl -X POST http://127.0.0.1:50000/write -d '{"address":20, "dataType":"string","dataValue":"123"}'
 ```
 
 | Key       | Value                     |
