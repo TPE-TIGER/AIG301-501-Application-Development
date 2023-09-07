@@ -49,7 +49,7 @@ $ tar -zxvf ModbusSlave.tar.gz -C ModbusSlave
 
 #### 2.3 Build Docker Image
 
-##### 2.3.1 change current directory to "TpmSample"
+##### 2.3.1 change current directory
 
 ```
 $ cd ModbusSlave
