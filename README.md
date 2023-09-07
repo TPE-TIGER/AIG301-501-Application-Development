@@ -66,3 +66,4 @@ Below table gives you ideas how to select suitable application development way t
 4. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module%20in%20C.md">Develop Our Own "thingspro-agent" Module in C</a>
 5. <a href="documents/Leveraging%20TPM%20in%20IoT%20Edge%20Module.md">Leveraging TPM in IoT Edge Module</a>
 6. <a href="documents/Leveraging%20DIO%20in%20IoT%20Edge%20Module.md">Leveraging DIO in IoT Edge Module</a>
+7. <a href="documents/Modbus%20Slave%20Sample%20Module.md">Modbus Slave Sample Module</a>

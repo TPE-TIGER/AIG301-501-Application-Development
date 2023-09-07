@@ -1,0 +1,23 @@
+#-------------------------------------------------------------------------------------------
+# build stage
+#-------------------------------------------------------------------------------------------
+FROM python:3.11-slim as build
+
+COPY requirements.txt .
+
+RUN apt update && apt install -y qemu-user-static build-essential
+RUN pip install --upgrade pip \
+    pip install -r requirements.txt
+
+#-------------------------------------------------------------------------------------------
+# target stage
+#-------------------------------------------------------------------------------------------
+FROM arm32v7/python:3.11-slim
+
+COPY --from=build /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY ./*.py /app/
+COPY /config.json /app/
+
+WORKDIR /app
+
+CMD ["python3", "-u", "web.py"]

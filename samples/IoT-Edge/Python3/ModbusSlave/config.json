@@ -1,0 +1,20 @@
+[
+  {
+    "address": 0,
+    "prvdName": "system",
+    "srcName": "status",
+    "tagName": "cpuUsage"
+  },
+  {
+    "address": 4,
+    "prvdName": "system",
+    "srcName": "status",
+    "tagName": "memoryUsage"
+  },
+  {
+    "address": 8,
+    "prvdName": "system",
+    "srcName": "network",
+    "tagName": "lan1NetworkUsage"
+  }
+]
