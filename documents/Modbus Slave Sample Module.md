@@ -181,7 +181,7 @@ Users can retreive or modify the tag mapping settings through REST API calls.
 
     > *Note: Provider name, source name and tag name can be listed with API: ***/tags/list***
     > ```
-    > curl -X GET https://127.0.0.1:8443/api/v1/tags/list \
+    > $ curl -X GET https://127.0.0.1:8443/api/v1/tags/list \
     > -H "accept: application/json" \
     > -H "mx-api-token:$(cat /var/run/mx-api-token)" -k | jq
     > ```
