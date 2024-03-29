@@ -53,11 +53,12 @@ Below table gives you ideas how to select suitable application development way t
 
 ## tpFunc Function
 1. <a href="https://github.com/TPE-TIGER/tpe-function-sdk">What is tpFunc and tpFunc funciton</a>
-2. <a href="documents/Scheduled%20Operation%20Task%201.md">(Example) Scheduled Operation Task 1</a> (by confg)
-3. <a href="documents/Scheduled%20Operation%20Task%202.md">(Example) Scheduled Operation Task 2</a> (by code)
-4. <a href="documents/Enable%20onChange%20Feature%20on%20TagHub.md">(Example) Enable onChange Feature on TagHub</a> 
-5. <a href="documents//Import%20Modbus%20Config%20by%20Azure%20IoT%20Hub%20Direct%20Method.md">(Example) Import Modbus Configuration File by Azure IoT Hub Direct Method</a>
-6. <a href="documents/tpFunc-Virtual-Tags-by-Hopping-Window.md">(Example) Virtual Tags by Hopping Window</a>
+2. <a href="documents/tpfunc-Development%20Notes%20and Limitations.md">Development Notes and Limitations</a>
+3. <a href="documents/Scheduled%20Operation%20Task%201.md">(Example) Scheduled Operation Task 1</a> (by confg)
+4. <a href="documents/Scheduled%20Operation%20Task%202.md">(Example) Scheduled Operation Task 2</a> (by code)
+5. <a href="documents/Enable%20onChange%20Feature%20on%20TagHub.md">(Example) Enable onChange Feature on TagHub</a> 
+6. <a href="documents//Import%20Modbus%20Config%20by%20Azure%20IoT%20Hub%20Direct%20Method.md">(Example) Import Modbus Configuration File by Azure IoT Hub Direct Method</a>
+7. <a href="documents/tpFunc-Virtual-Tags-by-Hopping-Window.md">(Example) Virtual Tags by Hopping Window</a>
 
 ## Azure IoT Edge Module
 1. <a href="documents/Develop%20Our%20Own%20&quot;thingspro-agent&quot;%20Module%20in%20Python3.md">Develop Our Own "thingspro-agent" Module in Python3</a>
